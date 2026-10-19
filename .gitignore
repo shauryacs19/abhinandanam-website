@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+lighthouse/*.html
+# raw PDF extracts are reproducible from assets/source via scripts/
+assets/raw/
+__pycache__/
+*.pyc
