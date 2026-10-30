@@ -4,26 +4,26 @@ Everything below is either missing from the brochures or contradicts itself. The
 
 ## 1. Needed before launch
 
-- [ ] **WhatsApp Business number.** The site assumes **+91 82258 22585**. Confirm it's on WhatsApp. [`data/site.ts` → `whatsapp`, `data/hotels.ts` → `GROUP_WHATSAPP`]
-- [ ] **Check-in / check-out times** for Hotel Abhinandanam and The Grey Circle. [`checkIn`, `checkOut`]
-- [ ] **Policies** per hotel: ID proof required, pets, cancellation. [`policies`]
-- [ ] **Room sizes (sq ft) and occupancy** for every room category (16 categories in total). [`rooms[].sizeSqft`, `rooms[].occupancy`]
+- [ ] **WhatsApp Business number.** The site now uses **+91 82258 22569**, the number behind the WhatsApp button on the official Linktree (linktr.ee/abhinandanam). Confirm. (The Linktree link itself is `wa.me/8225822569` without the 91 country code, so it doesn't open a chat: fix it to `wa.me/918225822569`.) [`data/site.ts` → `whatsapp`, `data/hotels.ts` → `GROUP_WHATSAPP`]
+- [x] ~~Check-in / check-out times~~: 12:00 PM / 10:00 AM for every hotel (client, 2026-10-25; matches MakeMyTrip). [`CHECK_IN`, `CHECK_OUT` in `data/hotels.ts`]
+- [ ] **Cancellation policy** for direct bookings. ID proof, pets, extra beds, infants and house rules are filled in from the MakeMyTrip listings (2026-10-25); confirm they're current. [`policies`, `rules`]
+- [ ] **Room sizes / occupancy still missing:** Grey Circle Standard Room occupancy; all 6 Pradesha categories. The rest come from MakeMyTrip. [`rooms[].sizeSqft`, `rooms[].occupancy`, `rooms[].bed`]
 - [ ] **Google review quotes.** 3 to 6 real reviews with first name + initial, hotel and month. The home "Guest reviews" section stays hidden until these are added. [`data/reviews.ts`]
 - [ ] **LinkedIn page URL.** The brochure shows the LinkedIn icon with `/abhinandanamhospitality`; the exact company URL needs confirming. [`data/site.ts` → `socials.linkedin`]
 - [ ] **Photo usage rights.** Two rooftop-pool photos (`abhinandanam-pool-2`, `abhinandanam-dining-1`) carry a photographer's watermark. Confirm we may use them, or get clean originals.
 
 ## 2. Photos
 
-- [ ] **High-resolution originals (2000px+ wide)** of the key shots. Brochure photos top out around 1,000–1,400px, so the full-width hero looks soft on big screens. Most wanted: Abhinandanam facade at dusk, rooftop pool, lobby, each room category.
-- [ ] **The Grey Circle "Premium" room** has no photo (brochure 1 lists Deluxe | Premium | Executive | Suite; brochure 2 shows only 3).
-- [ ] **The Grey Circle**: any dining, banquet or meeting-room photos if those facilities exist (the brochure doesn't mention them).
+- [x] ~~Room-by-room photo sets~~ for Abhinandanam and The Grey Circle came from the client's Google Drive folders (2026-10-25), plus Grey Circle facade, lobby, rooftop, banquet and meeting room. Still wanted: a clean (2000px+) Abhinandanam facade-at-dusk and banquet-hall shots.
+- [ ] **360° photos** of each hotel (lobby, rooftop/pool, banquet, one room per category) for a virtual-tour viewer. Needs a 360 camera (e.g. Insta360) or the Google Street View app's photo-sphere mode.
+- [ ] **The Grey Circle banquet hall capacity** (the site says "Ask for capacity"). [`banquet.capacity`]
 - [ ] **Hotel Abhinandanam**: gym, parking, conference room photos.
 - [ ] **Pradesha**: renders of the **infinity pool**, gym and cafeteria (currently a placeholder image on its page).
-- [ ] Room-by-room photo sets (2–4 per category) to fill the room carousels.
 
 ## 3. Pradesha by Abhinandanam (coming soon)
 
-- [ ] Address / locality and a Google Maps pin (the map, "Get directions" and the address line are hidden until then).
+- [ ] Address / locality and a Google Maps pin. Until then the page shows a map of Indore with "Exact location to be announced" (not on Google Maps yet). [`geo`, `mapEmbedUrl`]
+- [x] ~~Banquet capacity~~: 400+ guests (client, 2026-10-25).
 - [ ] Expected opening date (could show "Opening <month year>").
 - [ ] Room count, in-room amenities, and whether rooms will match the Abhinandanam list.
 - [ ] Confirm the "Twin / Corporate" category name (brochure 2 calls it "Corporate Executive").
@@ -53,4 +53,7 @@ Leads from public listings (unverified, **not** shown on the site):
 - [ ] **"1500+ registered loyalty clients" and "98% customer satisfaction"** are shown on the site from the brochures. Confirm they're current.
 - [ ] **Google Maps pins.** The site uses the Google places "Hotel Abhinandanam" (22.7497, 75.8998) and "Hotel the Grey Circle" (22.7654, 75.8861). Confirm these are the official listings.
 - [ ] **Room descriptions for The Grey Circle.** The brochure gives names only; the site uses neutral one-liners. Send approved copy.
+- [ ] **The Grey Circle room names.** MakeMyTrip lists Standard / Deluxe / Premium / Executive / Suite; the Drive folder calls the smallest one "Small Deluxe". The site uses MakeMyTrip's "Standard Room".
+- [ ] **MakeMyTrip facts now on the site:** smoking allowed / alcohol not allowed at The Grey Circle; Abhinandanam rooftop pool open 10 AM–5 PM, closed Saturdays. Confirm.
+- [ ] **Logos for the 6 other hotels** (the home "Ways to stay" wall shows their names in type until then).
 - [ ] **Banquet details.** Abhinandanam: confirm 2 halls / up to 100 guests per hall or in total, and catering options.

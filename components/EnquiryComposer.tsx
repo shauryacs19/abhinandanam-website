@@ -19,10 +19,10 @@ export default function EnquiryComposer({ hotels, whatsappNumber, email }: Props
   const wa = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
   const mail = `mailto:${email}?subject=${encodeURIComponent(`${kind}: ${hotel}`)}&body=${encodeURIComponent(text)}`;
 
-  const field = 'mt-1.5 w-full rounded-xl border border-gold bg-white px-4 py-3 text-[16px] outline-none focus:border-copper-dark focus:ring-2 focus:ring-copper-dark/30';
+  const field = 'mt-1.5 w-full rounded-xl border border-gold/25 bg-cream px-4 py-3 text-[16px] outline-none focus:border-brass focus:ring-2 focus:ring-brass/30';
 
   return (
-    <form className="rounded-3xl border border-gold/60 bg-white/70 p-6 shadow-card sm:p-8" onSubmit={(e) => e.preventDefault()} aria-describedby="composer-note">
+    <form className="rounded-xl border border-gold/15 bg-sand p-6 shadow-card sm:p-8" onSubmit={(e) => e.preventDefault()} aria-describedby="composer-note">
       <h2 className="font-serif text-3xl font-semibold">Send an enquiry</h2>
       <p id="composer-note" className="mt-1 text-sm text-muted">
         Opens WhatsApp or your email app with the message ready. You choose when to send.

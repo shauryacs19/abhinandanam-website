@@ -34,7 +34,7 @@ export default function SubNav({ sections }: { sections: { id: string; label: st
   }, [active]);
 
   return (
-    <nav aria-label="On this page" className="sticky top-[var(--header-h)] z-30 border-b border-gold/50 bg-cream/95 backdrop-blur">
+    <nav aria-label="On this page" className="sticky top-[var(--header-h)] z-30 border-b border-gold/25 bg-cream/95 backdrop-blur">
       <ul ref={listRef} className="no-scrollbar container-page flex gap-1 overflow-x-auto">
         {sections.map((s) => (
           <li key={s.id} className="shrink-0">
@@ -43,7 +43,7 @@ export default function SubNav({ sections }: { sections: { id: string; label: st
               data-id={s.id}
               aria-current={active === s.id ? 'location' : undefined}
               className={`flex min-h-[48px] items-center border-b-2 px-3 text-[15px] font-medium transition-colors ${
-                active === s.id ? 'border-copper-dark text-copper-dark' : 'border-transparent text-muted hover:text-ink'
+                active === s.id ? 'border-brass text-brass' : 'border-transparent text-muted hover:text-ink'
               }`}
             >
               {s.label}

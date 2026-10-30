@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Menu, MessageCircle, Phone, X } from 'lucide-react';
+import { site } from '@/data/site';
 
 export type NavHotel = { slug: string; name: string; tag?: string; featured?: boolean };
 
@@ -27,12 +28,23 @@ export default function Header({ hotels, phone, whatsappHref }: Props) {
   const dropdownRef = useRef<HTMLLIElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobilePanelRef = useRef<HTMLDivElement>(null);
+  const [scrolled, setScrolled] = useState(false);
+  const home = pathname === '/';
 
   // Close menus on navigation
   useEffect(() => {
     setHotelsOpen(false);
     setMobileOpen(false);
   }, [pathname]);
+
+  // Home: the header floats transparent over the full-screen photo hero until the page scrolls
+  useEffect(() => {
+    if (!home) return;
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [home]);
 
   // Dropdown: close on outside click / Escape
   useEffect(() => {
@@ -71,25 +83,30 @@ export default function Header({ hotels, phone, whatsappHref }: Props) {
   const featured = hotels.filter((h) => h.featured);
   const others = hotels.filter((h) => !h.featured);
   const isActive = (href: string) => pathname === href || pathname?.startsWith(href);
+  const overlay = home && !scrolled && !mobileOpen;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gold/50 bg-cream/95 backdrop-blur supports-[backdrop-filter]:bg-cream/85">
+    <header
+      // No bottom border: it made the header 1px taller than the hero's pull-up, leaving a light sliver at the top
+      className={`theme-dark sticky top-0 z-50 text-ink transition-colors duration-300 ${
+        overlay
+          ? 'bg-transparent'
+          : // translucent smoked glass: the page and photos show through, tinted dark (client, 2026-10-30)
+            'bg-[rgb(18_16_14/0.88)] supports-[backdrop-filter]:bg-[rgb(18_16_14/0.42)] supports-[backdrop-filter]:backdrop-blur-xl supports-[backdrop-filter]:backdrop-saturate-150'
+      }`}
+    >
       <div className="container-page flex h-[var(--header-h)] items-center justify-between gap-4">
-        <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3">
-          <img src="/images/brand/abhinandanam-mark-sm.webp" alt="" width={113} height={112} className="h-10 w-auto shrink-0 sm:h-12" />
-          <span className="flex flex-col leading-none">
-            <span className="font-serif text-[19px] font-semibold tracking-wide text-teal-dark sm:text-2xl">Abhinandanam</span>{' '}
-            <span className="mt-1 text-[9px] font-semibold uppercase tracking-[0.28em] text-muted sm:text-[10px]">Hospitality</span>
-            <span className="sr-only"> (home)</span>
-          </span>
+        {/* Horizontal logo (client artwork + (R), scripts/build_logos.py). Jade on emerald is 5:1. */}
+        <Link href="/" className="flex min-w-0 shrink items-center">
+          <img src={site.logoHorizontalWhite} alt="Abhinandanam Hospitality Pvt. Ltd. (home)" width={1000} height={237} className="h-10 w-auto max-w-full sm:h-[52px] lg:h-[clamp(40px,3.6vw,52px)]" />
         </Link>
 
         <nav aria-label="Main" className="hidden lg:block">
-          <ul className="flex items-center gap-1 text-[15px] font-medium">
+          <ul className="flex items-center gap-1 text-[15px] font-medium lg:text-[clamp(13px,1.05vw,15px)]">
             <li className="relative" ref={dropdownRef}>
               <button
                 type="button"
-                className={`flex min-h-[44px] items-center gap-1 rounded-full px-4 hover:text-copper-dark ${isActive('/hotels') ? 'text-copper-dark' : ''}`}
+                className={`flex min-h-[44px] items-center gap-1 rounded-full px-4 hover:text-brass lg:px-[clamp(8px,1.1vw,16px)] ${isActive('/hotels') ? 'text-brass' : ''}`}
                 aria-expanded={hotelsOpen}
                 aria-controls="hotels-menu"
                 onClick={() => setHotelsOpen((o) => !o)}
@@ -99,7 +116,7 @@ export default function Header({ hotels, phone, whatsappHref }: Props) {
               <div
                 id="hotels-menu"
                 hidden={!hotelsOpen}
-                className="absolute left-0 top-full mt-2 w-80 rounded-2xl border border-gold/50 bg-cream p-3 shadow-lift"
+                className="absolute left-0 top-full mt-2 w-80 rounded-lg border border-gold/25 bg-cream p-3 text-ink shadow-lift"
               >
                 <ul>
                   {featured.map((h) => (
@@ -113,7 +130,7 @@ export default function Header({ hotels, phone, whatsappHref }: Props) {
                 </ul>
                 {others.length > 0 && (
                   <>
-                    <p className="mt-2 border-t border-gold/40 px-3 pt-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted">More hotels</p>
+                    <p className="mt-2 border-t border-gold/20 px-3 pt-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted">More hotels</p>
                     <ul className="grid grid-cols-2 gap-x-2 py-1 text-sm">
                       {others.map((h) => (
                         <li key={h.slug}>
@@ -135,7 +152,7 @@ export default function Header({ hotels, phone, whatsappHref }: Props) {
                 <Link
                   href={l.href}
                   aria-current={isActive(l.href) ? 'page' : undefined}
-                  className={`flex min-h-[44px] items-center rounded-full px-4 hover:text-copper-dark ${isActive(l.href) ? 'text-copper-dark' : ''}`}
+                  className={`flex min-h-[44px] items-center rounded-full px-4 hover:text-brass lg:px-[clamp(8px,1.1vw,16px)] ${isActive(l.href) ? 'text-brass' : ''}`}
                 >
                   {l.label}
                 </Link>
@@ -153,7 +170,7 @@ export default function Header({ hotels, phone, whatsappHref }: Props) {
           <button
             ref={menuButtonRef}
             type="button"
-            className="grid h-11 w-11 place-items-center rounded-full border border-gold lg:hidden"
+            className="grid h-11 w-11 place-items-center rounded-full border border-gold/15 lg:hidden"
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
@@ -169,11 +186,11 @@ export default function Header({ hotels, phone, whatsappHref }: Props) {
         id="mobile-menu"
         ref={mobilePanelRef}
         hidden={!mobileOpen}
-        className="fixed inset-x-0 bottom-0 top-[var(--header-h)] overflow-y-auto border-t border-gold/50 bg-cream lg:hidden"
+        className="fixed inset-x-0 bottom-0 top-[var(--header-h)] overflow-y-auto border-t border-gold/25 bg-cream text-ink lg:hidden"
       >
         <nav aria-label="Mobile" className="container-page py-6">
           <p className="eyebrow">Our hotels</p>
-          <ul className="mt-3 divide-y divide-gold/30">
+          <ul className="mt-3 divide-y divide-gold/15">
             {featured.map((h) => (
               <li key={h.slug}>
                 <Link href={`/hotels/${h.slug}/`} className="flex min-h-[52px] items-center justify-between font-serif text-xl font-semibold">
@@ -186,7 +203,7 @@ export default function Header({ hotels, phone, whatsappHref }: Props) {
           <Link href="/hotels/" className="link mt-2 inline-block text-sm">
             All {hotels.length} hotels →
           </Link>
-          <ul className="mt-6 divide-y divide-gold/30 border-t border-gold/30">
+          <ul className="mt-6 divide-y divide-gold/15 border-t border-gold/15">
             {links.map((l) => (
               <li key={l.href}>
                 <Link href={l.href} aria-current={isActive(l.href) ? 'page' : undefined} className="flex min-h-[52px] items-center text-lg font-medium">
@@ -197,7 +214,7 @@ export default function Header({ hotels, phone, whatsappHref }: Props) {
           </ul>
           <div className="mt-8 grid gap-3">
             <a href={`tel:${phone.tel}`} data-track="mobile-menu" className="btn-primary w-full">
-              <Phone className="h-4 w-4" aria-hidden="true" /> Call {phone.display}
+              <Phone className="h-4 w-4" aria-hidden="true" /> Call to Book
             </a>
             <a href={whatsappHref} data-track="mobile-menu" target="_blank" rel="noopener noreferrer" className="btn-whatsapp w-full">
               <MessageCircle className="h-4 w-4" aria-hidden="true" /> WhatsApp us

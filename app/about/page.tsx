@@ -1,7 +1,7 @@
 import { BedDouble, Gem, HeartHandshake, TrendingUp } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Img from '@/components/Img';
-import HotelArchCard from '@/components/HotelArchCard';
+import HotelCard from '@/components/HotelCard';
 import CallBand from '@/components/CallBand';
 import CountUp from '@/components/CountUp';
 import Divider from '@/components/Divider';
@@ -37,7 +37,7 @@ export default function AboutPage() {
             <p className="mt-4 text-[17px] text-muted">
               With two operating 3- and 4-star hotels, The Grey Circle and Hotel Abhinandanam, and a new 4-star property, Pradesha by Abhinandanam, on the horizon, the group continues to expand its presence while staying committed to service, comfort and authentic hospitality.
             </p>
-            <p className="mt-6 font-serif text-2xl font-semibold text-copper-dark">{site.values.join(' · ')}</p>
+            <p className="mt-6 font-serif text-2xl font-semibold text-brass">{site.values.join(' · ')}</p>
           </div>
           <div className="relative mx-auto w-full max-w-md">
             <div className="arch absolute inset-0 translate-x-3 translate-y-3 border border-gold" aria-hidden="true" />
@@ -53,8 +53,8 @@ export default function AboutPage() {
           <SectionHeading id="why-title" eyebrow="Why you choose us" title="Every stay is more than a room" intro="At Abhinandanam Hospitality, we believe every stay is an experience. With a growing portfolio of hotels and a commitment to quality, comfort and warm service, we create stays that guests remember." />
           <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {pillars.map(({ icon: Icon, title, text }) => (
-              <li key={title} className="reveal rounded-2xl border border-gold/50 bg-white/60 p-6">
-                <Icon className="h-8 w-8 text-copper-dark" strokeWidth={1.5} aria-hidden="true" />
+              <li key={title} className="reveal rounded-lg border border-gold/25 bg-sand p-6">
+                <Icon className="h-8 w-8 text-brass" strokeWidth={1.5} aria-hidden="true" />
                 <h2 className="mt-4 text-2xl font-semibold">{title}</h2>
                 <p className="mt-2 text-[15px] text-muted">{text}</p>
               </li>
@@ -63,7 +63,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-ink py-14 text-cream" aria-label="Abhinandanam in numbers">
+      <section className="bg-deep py-14 text-ink" aria-label="Abhinandanam in numbers">
         <dl className="container-page grid grid-cols-2 gap-8 text-center lg:grid-cols-4">
           {[
             { value: site.stats.loyaltyClients, suffix: '+', label: 'Registered loyalty clients' },
@@ -72,8 +72,8 @@ export default function AboutPage() {
             { value: roomCategoryCount, suffix: '', label: 'Room categories' },
           ].map((s) => (
             <div key={s.label} className="reveal flex flex-col-reverse">
-              <dt className="mt-2 text-sm uppercase tracking-[0.16em] text-cream/75">{s.label}</dt>
-              <dd className="font-serif text-5xl font-semibold text-gold sm:text-6xl">
+              <dt className="mt-2 text-sm uppercase tracking-[0.16em] text-ink/75">{s.label}</dt>
+              <dd className="font-serif text-5xl font-semibold text-brass sm:text-6xl">
                 <CountUp value={s.value} suffix={s.suffix} />
               </dd>
             </div>
@@ -84,9 +84,9 @@ export default function AboutPage() {
       <section className="section" aria-labelledby="vision-title">
         <div className="container-page">
           <SectionHeading id="vision-title" eyebrow="Our vision" title={site.oneVision} intro="Style and hospitality for leisure travellers and business professionals, with exceptional service, thoughtful amenities and the warmth of Indore." />
-          <div className="mt-14 grid gap-14 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+          <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {featuredHotels.map((h) => (
-              <HotelArchCard key={h.slug} hotel={h} />
+              <HotelCard key={h.slug} hotel={h} />
             ))}
           </div>
         </div>

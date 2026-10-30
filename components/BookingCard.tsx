@@ -7,14 +7,14 @@ import Stars from './Stars';
 export default function BookingCard({ hotel }: { hotel: Hotel }) {
   const soon = hotel.status === 'coming-soon';
   return (
-    <div className="rounded-3xl border border-gold/60 bg-white/80 p-6 shadow-lift">
-      <p className="eyebrow">{soon ? 'Opening soon' : 'Best rates on a direct call'}</p>
+    <div className="rounded-xl border border-gold/15 bg-sand p-6 shadow-lift">
+      <p className="eyebrow">{soon ? 'Opening soon' : 'Book direct with the hotel'}</p>
       <p className="mt-2 font-serif text-3xl font-semibold leading-tight">{hotel.name}</p>
-      {hotel.stars && <Stars count={hotel.stars} className="mt-2 text-copper-dark" />}
+      {hotel.stars && <Stars count={hotel.stars} className="mt-2 text-brass" />}
       <p className="mt-3 text-sm text-muted">
         {soon
           ? 'Pre-book or ask to be notified when bookings open. Our team will call you back.'
-          : 'Call or WhatsApp the front desk for availability and the best direct rate.'}
+          : 'Call or WhatsApp the front desk for availability and rates.'}
       </p>
 
       <div className="mt-5 grid gap-2.5">
@@ -29,23 +29,13 @@ export default function BookingCard({ hotel }: { hotel: Hotel }) {
         </a>
       </div>
 
-      <ul className="mt-5 space-y-1 border-t border-gold/40 pt-4 text-center">
-        {hotel.phones.map((p) => (
-          <li key={p}>
-            <a href={`tel:${p}`} data-track={`booking-card:${hotel.slug}`} className="font-serif text-2xl font-semibold hover:text-copper-dark">
-              {formatPhone(p)}
-            </a>
-          </li>
-        ))}
-      </ul>
 
       {!soon && (
-        <dl className="mt-4 grid grid-cols-2 gap-3 border-t border-gold/40 pt-4 text-sm">
+        <dl className="mt-4 grid grid-cols-2 gap-3 border-t border-gold/20 pt-4 text-sm">
           <div>
             <dt className="flex items-center gap-1.5 text-muted">
               <Clock className="h-4 w-4" aria-hidden="true" /> Check-in
             </dt>
-            {/* TODO: check-in time from the client */}
             <dd className="mt-0.5 font-medium">{hotel.checkIn ?? 'Ask the front desk'}</dd>
           </div>
           <div>

@@ -24,14 +24,14 @@ export default function MobileBar({ fallback, hotels }: Props) {
   return (
     <nav
       aria-label="Quick contact"
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-gold/60 bg-cream/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-gold/15 bg-cream/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
     >
-      <div className="flex divide-x divide-gold/40">
-        <a href={`tel:${ctx.phone}`} data-track={`bar:${ctx.slug}`} className={`${item} bg-copper-dark text-white`}>
+      <div className="flex divide-x divide-gold/20">
+        <a href={`tel:${ctx.phone}`} data-track={`bar:${ctx.slug}`} className={`${item} bg-gold text-cream`}>
           <Phone className="h-5 w-5" aria-hidden="true" />
           {ctx.comingSoon ? 'Pre-book' : 'Call'}
         </a>
-        <a href={ctx.whatsappHref} data-track={`bar:${ctx.slug}`} target="_blank" rel="noopener noreferrer" className={`${item} text-teal-dark`}>
+        <a href={ctx.whatsappHref} data-track={`bar:${ctx.slug}`} target="_blank" rel="noopener noreferrer" className={`${item} text-brass`}>
           <MessageCircle className="h-5 w-5" aria-hidden="true" />
           WhatsApp
         </a>

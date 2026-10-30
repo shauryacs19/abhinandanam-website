@@ -24,7 +24,7 @@ export default function ThumbGrid({ images, limit = 8, title, className = 'grid-
               >
                 <Img src={img.src} alt="" sizes="(min-width: 640px) 200px, 45vw" className="h-full w-full object-cover transition-opacity group-hover:opacity-85" />
                 {isLastWithMore && (
-                  <span className="absolute inset-0 grid place-items-center bg-ink/60 font-serif text-2xl font-semibold text-white">+{rest + 1} photos</span>
+                  <span className="absolute inset-0 grid place-items-center bg-deep/60 font-serif text-2xl font-semibold text-white">+{rest + 1} photos</span>
                 )}
               </button>
             </li>

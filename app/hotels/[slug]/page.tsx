@@ -1,15 +1,16 @@
 import { notFound } from 'next/navigation';
-import { Building2, Clock, IdCard, MapPin, MessageCircle, Navigation, PawPrint, Phone, Plane, TrainFront, TramFront, Users, Mail, FileText } from 'lucide-react';
+import { Baby, BedSingle, Building2, Check, Clock, IdCard, MapPin, MessageCircle, Navigation, PawPrint, Phone, Plane, TrainFront, TramFront, Users, Mail, FileText } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import PhotoHeader from '@/components/PhotoHeader';
 import SubNav from '@/components/SubNav';
 import BookingCard from '@/components/BookingCard';
+import AvailabilityBar from '@/components/AvailabilityBar';
 import RoomCard from '@/components/RoomCard';
 import ThumbGrid from '@/components/ThumbGrid';
 import Img from '@/components/Img';
 import MapEmbed from '@/components/MapEmbed';
 import CopyButton from '@/components/CopyButton';
-import HotelArchCard from '@/components/HotelArchCard';
+import HotelCard from '@/components/HotelCard';
 import CallBand from '@/components/CallBand';
 import JsonLd from '@/components/JsonLd';
 import Stars from '@/components/Stars';
@@ -32,7 +33,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   const where = h.area && h.area !== h.city ? `${h.area}, ${h.city}` : h.city;
   const kind = h.stars ? `${h.stars}-star hotel` : 'Hotel';
   const title = h.status === 'coming-soon' ? `${h.name}: upcoming ${kind} in ${where}` : `${h.name}: ${kind} in ${where}`;
-  const description = `${h.tagline}. ${h.status === 'coming-soon' ? 'Pre-book' : 'Book direct'} on ${formatPhone(h.phones[0])} or WhatsApp for the best rate.`;
+  const description = `${h.tagline}. ${h.status === 'coming-soon' ? 'Pre-book' : 'Book direct'} by phone or WhatsApp.`;
   return pageMeta({ title, description, path: `/hotels/${h.slug}/`, image: hotelOgImage(h) });
 }
 
@@ -89,7 +90,7 @@ export default function HotelPage({ params }: { params: { slug: string } }) {
           <div>
             <div className="flex flex-wrap items-center gap-3">
               {h.stars && (
-                <span className="inline-flex items-center gap-1.5 text-copper-dark">
+                <span className="inline-flex items-center gap-1.5 text-brass">
                   <Stars count={h.stars} />
                   <span className="text-xs font-semibold uppercase tracking-[0.18em]">{h.stars}-star</span>
                 </span>
@@ -101,20 +102,28 @@ export default function HotelPage({ params }: { params: { slug: string } }) {
               <MapPin className="mt-1 h-4 w-4 shrink-0" aria-hidden="true" /> {placeholder ? where : h.address}
             </p>
           </div>
-          <a href={`tel:${h.phones[0]}`} data-track={`title:${h.slug}`} className="hidden whitespace-nowrap font-serif text-2xl font-semibold text-copper-dark hover:underline lg:block">
-            {formatPhone(h.phones[0])}
+          <a href={`tel:${h.phones[0]}`} data-track={`title:${h.slug}`} className="btn-primary hidden lg:inline-flex">
+            <Phone className="h-4 w-4" aria-hidden="true" /> {soon ? 'Call to pre-book' : 'Call to book'}
           </a>
         </div>
         <div className="mt-6">
           {photos.length ? (
             <PhotoHeader images={photos} hotelName={h.name} />
           ) : (
-            <div className="overflow-hidden rounded-3xl">
+            <div className="overflow-hidden rounded-xl">
               <Img src={h.cover} alt={`${h.name}: photos coming soon (placeholder)`} priority className="h-[240px] w-full bg-sand object-contain sm:h-[360px]" />
             </div>
           )}
         </div>
-        {/* Phones: direct actions right under the photos (desktop uses the sticky card) */}
+        {/* Open hotels: dates + guests -> WhatsApp. Coming soon: plain Call / WhatsApp (phones only; desktop uses the sticky card) */}
+        {!soon ? (
+          <AvailabilityBar
+            hotels={[{ slug: h.slug, name: h.name, soon, phone: h.phones[0], whatsapp: h.whatsapp }]}
+            fixedSlug={h.slug}
+            trackLabel={h.slug}
+            className="mx-auto mt-5 max-w-[920px]"
+          />
+        ) : (
         <div className="mt-4 grid grid-cols-2 gap-2 lg:hidden">
           <a href={`tel:${h.phones[0]}`} data-track={`mobile-top:${h.slug}`} className="btn-primary">
             <Phone className="h-4 w-4" aria-hidden="true" /> {soon ? 'Pre-book' : 'Call'}
@@ -123,22 +132,23 @@ export default function HotelPage({ params }: { params: { slug: string } }) {
             <MessageCircle className="h-4 w-4" aria-hidden="true" /> WhatsApp
           </a>
         </div>
+        )}
       </div>
 
       <div className="mt-8">
         <SubNav sections={sections.map(({ id, label }) => ({ id, label }))} />
       </div>
 
-      <div className="container-page grid gap-12 py-12 lg:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="container-page grid gap-12 py-12 lg:grid-cols-[minmax(0,1fr)_minmax(220px,28%)] xl:grid-cols-[minmax(0,1fr)_340px]">
         <div className="min-w-0 space-y-20">
           {/* Overview */}
           <section id="overview" aria-labelledby="overview-title">
             <SectionTitle id="overview" eyebrow={soon ? 'Opening soon' : 'Overview'} title={h.tagline} />
             <p className="reveal mt-6 text-[17px] leading-relaxed">{h.description}</p>
             {placeholder && (
-              <div className="reveal mt-6 rounded-2xl border border-dashed border-gold bg-sand/60 p-5 text-sm">
+              <div className="reveal mt-6 rounded-lg border border-dashed border-gold/30 bg-sand/60 p-5 text-sm">
                 <p className="font-semibold">Full details for this hotel are being added.</p>
-                <p className="mt-1 text-muted">Our reservations team can tell you about rooms, amenities and the best rate right now.</p>
+                <p className="mt-1 text-muted">Our reservations team can tell you about rooms, amenities, availability and rates right now.</p>
               </div>
             )}
             {soon && (
@@ -149,8 +159,8 @@ export default function HotelPage({ params }: { params: { slug: string } }) {
                 {h.highlights.slice(0, 4).map((x) => {
                   const Icon = amenityIcon(x);
                   return (
-                    <li key={x} className="reveal flex flex-col items-start gap-3 rounded-2xl border border-gold/50 bg-white/60 p-4">
-                      <Icon className="h-7 w-7 text-copper-dark" strokeWidth={1.5} aria-hidden="true" />
+                    <li key={x} className="reveal flex flex-col items-start gap-3 rounded-lg border border-gold/25 bg-sand p-4">
+                      <Icon className="h-7 w-7 text-brass" strokeWidth={1.5} aria-hidden="true" />
                       <span className="text-[15px] font-medium leading-snug">{x}</span>
                     </li>
                   );
@@ -184,14 +194,14 @@ export default function HotelPage({ params }: { params: { slug: string } }) {
               <SectionTitle id="amenities" eyebrow="Amenities" title={soon ? 'Signature amenities' : 'Everything you need'} />
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 {amenityGroups.map((g) => (
-                  <div key={g} className="reveal rounded-2xl border border-gold/50 bg-white/60 p-6">
-                    <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.18em] text-copper-dark">{groupLabels[g]}</h3>
+                  <div key={g} className="reveal rounded-lg border border-gold/25 bg-sand p-6">
+                    <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.18em] text-brass">{groupLabels[g]}</h3>
                     <ul className="mt-4 grid grid-cols-1 gap-3 min-[420px]:grid-cols-2">
                       {h.amenities[g].map((a) => {
                         const Icon = amenityIcon(a);
                         return (
-                          <li key={a} className="flex items-center gap-2.5 text-[15px]">
-                            <Icon className="h-5 w-5 shrink-0 text-copper-dark" strokeWidth={1.6} aria-hidden="true" />
+                          <li key={a} className="flex items-start gap-2.5 text-[15px] leading-6">
+                            <Icon className="mt-0.5 h-5 w-5 shrink-0 text-brass" strokeWidth={1.6} aria-hidden="true" />
                             {a}
                           </li>
                         );
@@ -206,20 +216,24 @@ export default function HotelPage({ params }: { params: { slug: string } }) {
           {/* Dining / rooftop & pool (or the coming-soon infinity pool) */}
           {h.dining?.length ? (
             <section id="dining" aria-labelledby="dining-title">
-              <SectionTitle id="dining" eyebrow="Dining · Rooftop & pool" title="Rooftop restaurant with pool" />
+              <SectionTitle
+                id="dining"
+                eyebrow={h.dining.some((d) => /pool/i.test(d.title)) ? 'Dining · Rooftop & pool' : 'Dining · Rooftop'}
+                title={h.dining.some((d) => /pool/i.test(d.title)) ? 'Rooftop restaurant with pool' : 'Dining on the rooftop'}
+              />
               <div className="mt-8 space-y-12">
                 {h.dining.map((d, i) => (
                   <article key={d.title} className="reveal grid items-center gap-6 md:grid-cols-2">
                     <div className={`grid grid-cols-2 gap-2 ${i % 2 ? 'md:order-2' : ''}`}>
                       {d.images.length === 2 ? (
                         d.images.map((src) => (
-                          <Img key={src} src={src} alt={`${d.title} at ${h.name}`} sizes="(min-width: 768px) 15vw, 50vw" className="aspect-[4/5] w-full rounded-2xl object-cover" />
+                          <Img key={src} src={src} alt={`${d.title} at ${h.name}`} sizes="(min-width: 768px) 15vw, 50vw" className="aspect-[4/5] w-full rounded-lg object-cover" />
                         ))
                       ) : (
                         <>
-                          <Img src={d.images[0]} alt={`${d.title} at ${h.name}`} sizes="(min-width: 768px) 30vw, 100vw" className="col-span-2 aspect-[16/10] w-full rounded-2xl object-cover" />
+                          <Img src={d.images[0]} alt={`${d.title} at ${h.name}`} sizes="(min-width: 768px) 30vw, 100vw" className="col-span-2 aspect-[16/10] w-full rounded-lg object-cover" />
                           {d.images.slice(1, 3).map((src) => (
-                            <Img key={src} src={src} alt={`${d.title} at ${h.name}`} sizes="(min-width: 768px) 15vw, 50vw" className="aspect-square w-full rounded-2xl object-cover" />
+                            <Img key={src} src={src} alt={`${d.title} at ${h.name}`} sizes="(min-width: 768px) 15vw, 50vw" className="aspect-square w-full rounded-lg object-cover" />
                           ))}
                         </>
                       )}
@@ -237,7 +251,7 @@ export default function HotelPage({ params }: { params: { slug: string } }) {
               <SectionTitle id="dining" eyebrow="Coming with Pradesha" title="Infinity pool & cafeteria" />
               <div className="reveal mt-8 grid items-center gap-6 md:grid-cols-2">
                 {/* TODO: infinity pool render from the client */}
-                <Img src="/images/placeholder-amenity.webp" alt="Infinity pool: render coming soon (placeholder)" sizes="(min-width: 768px) 30vw, 100vw" className="aspect-[16/10] w-full rounded-2xl object-cover" />
+                <Img src="/images/placeholder-amenity.webp" alt="Infinity pool: render coming soon (placeholder)" sizes="(min-width: 768px) 30vw, 100vw" className="aspect-[16/10] w-full rounded-lg object-cover" />
                 <p className="text-[17px] text-muted">
                   Pradesha brings an infinity pool, a cafeteria, a gym and premium rooms with jacuzzi to Indore. Call us to be the first to know when bookings open.
                 </p>
@@ -250,11 +264,24 @@ export default function HotelPage({ params }: { params: { slug: string } }) {
             <section id="banquets" aria-labelledby="banquets-title">
               <SectionTitle id="banquets" eyebrow="Banquets & events" title={soon ? 'Where grand celebrations come to life' : 'Celebrate and meet in style'} />
               <div className="reveal mt-8 grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
-                <div className="rounded-3xl bg-ink p-7 text-cream">
-                  <p className="font-serif text-6xl font-semibold text-gold">{h.banquet.capacity}{soon ? '+' : ''}</p>
-                  <p className="mt-1 text-sm uppercase tracking-[0.16em] text-cream/75">{soon ? 'Guests' : 'Guests, up to'}</p>
-                  <p className="mt-5 flex items-center gap-2 text-cream/90">
-                    <Building2 className="h-5 w-5 text-gold" aria-hidden="true" /> {h.banquet.halls} banquet hall{h.banquet.halls > 1 ? 's' : ''}
+                <div className="rounded-xl bg-deep p-7 text-ink">
+                  {h.banquet.capacity ? (
+                    <>
+                      {!soon && <p className="text-sm uppercase tracking-[0.16em] text-ink/75">Up to</p>}
+                      <p className="font-serif text-6xl font-semibold leading-none text-brass">
+                        {h.banquet.capacity}
+                        {soon ? '+' : ''}
+                      </p>
+                      <p className="mt-2 text-sm uppercase tracking-[0.16em] text-ink/75">Guests</p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="font-serif text-4xl font-semibold text-brass">{h.banquet.capacityLabel}</p>
+                      <p className="mt-1 text-sm uppercase tracking-[0.16em] text-ink/75">Set-ups for your guest count</p>
+                    </>
+                  )}
+                  <p className="mt-5 flex items-center gap-2 text-ink/90">
+                    <Building2 className="h-5 w-5 text-brass" aria-hidden="true" /> {h.banquet.halls} banquet hall{h.banquet.halls > 1 ? 's' : ''}
                   </p>
                   <ul className="mt-5 flex flex-wrap gap-2">
                     {h.banquet.useCases.map((u) => (
@@ -268,7 +295,7 @@ export default function HotelPage({ params }: { params: { slug: string } }) {
                       <MessageCircle className="h-4 w-4" aria-hidden="true" /> Enquire on WhatsApp
                     </a>
                     <a href={`tel:${h.phones[0]}`} data-track={`banquet:${h.slug}`} className="btn-ghost-light">
-                      <Phone className="h-4 w-4" aria-hidden="true" /> Call {formatPhone(h.phones[0])}
+                      <Phone className="h-4 w-4" aria-hidden="true" /> Call to enquire
                     </a>
                   </div>
                 </div>
@@ -276,7 +303,7 @@ export default function HotelPage({ params }: { params: { slug: string } }) {
                   <p className="text-[17px]">{h.banquet.description}</p>
                   <div className="mt-5 grid grid-cols-2 gap-2">
                     {h.banquet.images.slice(0, 4).map((src, i) => (
-                      <Img key={src} src={src} alt={`Banquet hall at ${h.name}${soon ? " (artist's impression)" : ''}`} sizes="(min-width: 768px) 20vw, 50vw" className={`w-full rounded-2xl object-cover ${h.banquet!.images.length === 1 ? 'col-span-2 aspect-[16/9]' : 'aspect-[4/3]'} ${i === 0 && h.banquet!.images.length === 3 ? 'col-span-2' : ''}`} />
+                      <Img key={src} src={src} alt={`Banquet hall at ${h.name}${soon ? " (artist's impression)" : ''}`} sizes="(min-width: 768px) 20vw, 50vw" className={`w-full rounded-lg object-cover ${h.banquet!.images.length === 1 ? 'col-span-2 aspect-[16/9]' : 'aspect-[4/3]'} ${i === 0 && h.banquet!.images.length === 3 ? 'col-span-2' : ''}`} />
                     ))}
                   </div>
                 </div>
@@ -289,11 +316,18 @@ export default function HotelPage({ params }: { params: { slug: string } }) {
             <SectionTitle id="location" eyebrow="Location" title={soon ? 'Location to be announced' : `Find us in ${where}`} />
             <div className="reveal mt-8 grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
               {h.mapEmbedUrl ? (
-                <MapEmbed src={h.mapEmbedUrl} title={`Map showing ${h.name}`} className="h-[340px]" />
+                <div className="relative">
+                  <MapEmbed src={h.mapEmbedUrl} title={h.geo || !soon ? `Map showing ${h.name}` : `Map of ${h.city}, where ${h.name} is coming up`} className="h-[340px]" />
+                  {soon && !h.geo && (
+                    <p className="pointer-events-none absolute inset-x-3 bottom-3 flex items-center gap-2 rounded-xl bg-deep/85 px-4 py-2.5 text-sm text-ink">
+                      <MapPin className="h-4 w-4 shrink-0 text-brass" aria-hidden="true" /> Coming up in {h.city}. Exact location to be announced.
+                    </p>
+                  )}
+                </div>
               ) : (
-                <div className="grid h-[260px] place-items-center rounded-2xl border border-dashed border-gold bg-sand/60 p-6 text-center text-muted">
+                <div className="grid h-[260px] place-items-center rounded-lg border border-dashed border-gold/30 bg-sand/60 p-6 text-center text-muted">
                   <p>
-                    <MapPin className="mx-auto mb-2 h-6 w-6 text-copper-dark" aria-hidden="true" />
+                    <MapPin className="mx-auto mb-2 h-6 w-6 text-brass" aria-hidden="true" />
                     Exact address and map coming soon.
                   </p>
                 </div>
@@ -316,8 +350,8 @@ export default function HotelPage({ params }: { params: { slug: string } }) {
                       { icon: TrainFront, label: 'Railway', v: h.connectivity.railway },
                       { icon: TramFront, label: 'Metro', v: h.connectivity.metro },
                     ].map(({ icon: Icon, label, v }) => (
-                      <li key={label} className="rounded-2xl border border-gold/50 bg-white/60 px-2 py-4">
-                        <Icon className="mx-auto h-5 w-5 text-copper-dark" aria-hidden="true" />
+                      <li key={label} className="rounded-lg border border-gold/25 bg-sand px-2 py-4">
+                        <Icon className="mx-auto h-5 w-5 text-brass" aria-hidden="true" />
                         <p className="mt-2 font-serif text-3xl font-semibold">{v}</p>
                         <p className="text-xs text-muted">min to {label.toLowerCase()}</p>
                       </li>
@@ -332,24 +366,39 @@ export default function HotelPage({ params }: { params: { slug: string } }) {
           {!soon && (
             <section id="policies" aria-labelledby="policies-title">
               <SectionTitle id="policies" eyebrow="Good to know" title="Hotel policies" />
-              <dl className="reveal mt-8 grid gap-px overflow-hidden rounded-2xl border border-gold/50 bg-gold/40 sm:grid-cols-2">
+              <dl className="reveal mt-8 grid gap-px overflow-hidden rounded-lg border border-gold/25 bg-gold/40 sm:grid-cols-2">
                 {[
                   { icon: Clock, label: 'Check-in', value: h.checkIn },
                   { icon: Clock, label: 'Check-out', value: h.checkOut },
                   { icon: IdCard, label: 'ID proof', value: h.policies?.idProof },
                   { icon: PawPrint, label: 'Pets', value: h.policies?.pets },
+                  { icon: BedSingle, label: 'Extra bed', value: h.policies?.extraBed },
+                  { icon: Baby, label: 'Infants', value: h.policies?.children },
                   { icon: FileText, label: 'Cancellation', value: h.policies?.cancellation },
                   { icon: Users, label: 'Group & event bookings', value: 'Call or email our sales team' },
                 ].map(({ icon: Icon, label, value }) => (
                   <div key={label} className="bg-cream p-5">
                     <dt className="flex items-center gap-2.5 font-semibold">
-                      <Icon className="h-5 w-5 shrink-0 text-copper-dark" aria-hidden="true" /> {label}
+                      <Icon className="h-5 w-5 shrink-0 text-brass" aria-hidden="true" /> {label}
                     </dt>
-                    {/* TODO: policy text from the client */}
+                    {/* TODO: cancellation text from the client */}
                     <dd className="mt-0.5 pl-[30px] text-sm text-muted">{value ?? 'Confirm when you book'}</dd>
                   </div>
                 ))}
               </dl>
+              {h.rules?.length ? (
+                <div className="reveal mt-6 rounded-lg border border-gold/25 bg-sand p-6">
+                  <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.18em] text-brass">House rules</h3>
+                  <ul className="mt-4 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
+                    {h.rules.map((r) => (
+                      <li key={r} className="flex items-start gap-2.5 text-[15px]">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-brass" aria-hidden="true" />
+                        {r}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
             </section>
           )}
 
@@ -380,7 +429,7 @@ export default function HotelPage({ params }: { params: { slug: string } }) {
       </div>
 
       {/* Other hotels */}
-      <section className="section border-t border-gold/40 bg-sand" aria-labelledby="other-hotels">
+      <section className="section border-t border-gold/20 bg-sand" aria-labelledby="other-hotels">
         <div className="container-page">
           <div className="reveal text-center">
             <p className="eyebrow">Also from Abhinandanam</p>
@@ -388,9 +437,9 @@ export default function HotelPage({ params }: { params: { slug: string } }) {
               Other hotels you may like
             </h2>
           </div>
-          <div className="mt-12 grid gap-14 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+          <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {otherHotels(h.slug).map((o) => (
-              <HotelArchCard key={o.slug} hotel={o} />
+              <HotelCard key={o.slug} hotel={o} />
             ))}
           </div>
         </div>
@@ -398,7 +447,7 @@ export default function HotelPage({ params }: { params: { slug: string } }) {
 
       <CallBand
         title={soon ? 'Be the first to stay' : `Stay at ${h.name}`}
-        eyebrow={soon ? 'Pre-book / get notified' : 'Best rates on a direct call'}
+        eyebrow={soon ? 'Pre-book / get notified' : 'Book direct with the hotel'}
         phones={h.phones}
         whatsappText={waText.hotel(h)}
       />

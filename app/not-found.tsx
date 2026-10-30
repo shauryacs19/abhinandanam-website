@@ -16,7 +16,7 @@ export default function NotFound() {
           See all hotels
         </Link>
         <a href={`tel:${site.phones[0]}`} className="btn-primary">
-          <Phone className="h-4 w-4" aria-hidden="true" /> Call {formatPhone(site.phones[0])}
+          <Phone className="h-4 w-4" aria-hidden="true" /> Call us
         </a>
       </div>
     </section>

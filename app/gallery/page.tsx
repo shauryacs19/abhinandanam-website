@@ -29,7 +29,7 @@ export default function GalleryPage() {
 
         <nav aria-label="Jump to a hotel" className="no-scrollbar -mx-4 mt-8 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:px-0">
           {withPhotos.map((h) => (
-            <a key={h.slug} href={`#${h.slug}`} className="chip shrink-0 !py-2 font-semibold hover:border-copper-dark">
+            <a key={h.slug} href={`#${h.slug}`} className="chip shrink-0 !py-2 font-semibold hover:border-brass">
               {h.name} <span className="rounded-full bg-sand px-1.5 text-xs">{h.gallery.length}</span>
             </a>
           ))}
@@ -42,7 +42,7 @@ export default function GalleryPage() {
         </div>
 
         {comingSoon.length > 0 && (
-          <p className="mt-16 rounded-2xl border border-dashed border-gold bg-sand/50 p-5 text-sm text-muted">
+          <p className="mt-16 rounded-lg border border-dashed border-gold/30 bg-sand/50 p-5 text-sm text-muted">
             Photos coming soon for {comingSoon.map((h) => h.name).join(', ')}.
           </p>
         )}

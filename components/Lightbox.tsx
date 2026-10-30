@@ -110,7 +110,7 @@ export default function Lightbox({ images, openAt, onClose, title = 'Photo galle
       role="dialog"
       aria-modal="true"
       aria-label={title}
-      className="fixed inset-0 z-[100] flex flex-col bg-[#14100d]/95 text-cream"
+      className="lightbox fixed inset-0 z-[100] flex flex-col bg-[#14100d]/95 text-ink"
       onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
       onTouchEnd={(e) => {
         if (touchX.current === null) return;
@@ -120,7 +120,7 @@ export default function Lightbox({ images, openAt, onClose, title = 'Photo galle
       }}
     >
       <div className="flex items-center justify-between gap-4 px-4 py-3 sm:px-6">
-        <p className="text-sm tabular-nums text-cream/80" aria-live="polite">
+        <p className="text-sm tabular-nums text-ink/80" aria-live="polite">
           {index + 1} / {list.length}
         </p>
         {tabs.length > 0 && (
@@ -134,7 +134,7 @@ export default function Lightbox({ images, openAt, onClose, title = 'Photo galle
                   setCategory(key);
                   setIndex(0);
                 }}
-                className={`shrink-0 rounded-full px-3 py-1.5 text-sm ${category === key ? 'bg-cream text-ink' : 'text-cream/80 hover:bg-white/10'}`}
+                className={`shrink-0 rounded-full px-3 py-1.5 text-sm ${category === key ? 'bg-cream text-ink' : 'text-ink/80 hover:bg-white/10'}`}
               >
                 {label}
               </button>
@@ -160,9 +160,9 @@ export default function Lightbox({ images, openAt, onClose, title = 'Photo galle
             draggable={false}
           />
         </div>
-        <figcaption className="mt-3 px-4 pb-4 text-center text-sm text-cream/85">
+        <figcaption className="mt-3 px-4 pb-4 text-center text-sm text-ink/85">
           {current.alt}
-          {current.hotelName && <span className="text-cream/60"> · {current.hotelName}</span>}
+          {current.hotelName && <span className="text-ink/60"> · {current.hotelName}</span>}
           {current.isRender && <span className="ml-2 rounded-full border border-cream/40 px-2 py-0.5 text-xs">Artist&rsquo;s impression</span>}
         </figcaption>
         {list.length > 1 && (

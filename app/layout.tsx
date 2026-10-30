@@ -19,7 +19,7 @@ const sans = Inter({ subsets: ['latin'], variable: '--font-sans', display: 'swap
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: { default: 'Abhinandanam Hospitality | Hotels in Vijay Nagar, Indore', template: '%s | Abhinandanam Hospitality' },
-  description: `${site.tagline}. Hotel Abhinandanam, The Grey Circle and the upcoming Pradesha in Vijay Nagar, Indore. Call +91 82258 22585 for the best direct rates.`,
+  description: `${site.tagline}. Hotel Abhinandanam, The Grey Circle and the upcoming Pradesha in Vijay Nagar, Indore. Call or WhatsApp to book direct.`,
   applicationName: site.name,
   openGraph: {
     type: 'website',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 // Intro plays once per visit, only when the visit starts on the home page (the logo lands in the home hero).
 const INIT_SCRIPT = `(function(){var d=document.documentElement;d.classList.add('js');try{var home=location.pathname==='/'||location.pathname==='/index.html';if(!home||sessionStorage.getItem('intro-seen')||matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('no-intro')}else{sessionStorage.setItem('intro-seen','1')}}catch(e){d.classList.add('no-intro')}})();`;
 
-export const viewport: Viewport = { themeColor: '#FBF6EE', width: 'device-width', initialScale: 1 };
+export const viewport: Viewport = { themeColor: '#10231F', width: 'device-width', initialScale: 1 };
 
 function barContext(h: Hotel): BarContext {
   return {
@@ -65,7 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="pb-[calc(56px+env(safe-area-inset-bottom))] lg:pb-0">
         <IntroSplash />
-        <a href="#main" className="sr-only z-[60] rounded-full bg-copper-dark px-4 py-2 text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
+        <a href="#main" className="sr-only z-[60] rounded-full bg-gold px-4 py-2 text-cream focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
           Skip to content
         </a>
         <Header

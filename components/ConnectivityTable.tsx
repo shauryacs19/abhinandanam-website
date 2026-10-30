@@ -9,10 +9,10 @@ export default function ConnectivityTable({ hotels, linkNames = true, caption }:
   const rows = hotels.filter((h) => h.connectivity);
   if (!rows.length) return null;
   return (
-    <div className="overflow-x-auto rounded-2xl border border-gold/50 bg-white/60">
+    <div className="overflow-x-auto rounded-lg border border-gold/25 bg-sand">
       <table className="w-full text-sm">
         {caption && <caption className="caption-top px-3 pt-3 text-left text-xs text-muted">{caption}</caption>}
-        <thead className="border-b border-gold/40">
+        <thead className="border-b border-gold/20">
           <tr>
             <th scope="col" className={head}>
               Hotel
@@ -34,18 +34,18 @@ export default function ConnectivityTable({ hotels, linkNames = true, caption }:
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-gold/30">
+        <tbody className="divide-y divide-gold/15">
           {rows.map((h) => (
             <tr key={h.slug}>
               <th scope="row" className="px-2 py-3 text-left font-semibold sm:px-3">
                 {linkNames ? (
-                  <Link href={`/hotels/${h.slug}/`} className="hover:text-copper-dark hover:underline">
+                  <Link href={`/hotels/${h.slug}/`} className="hover:text-brass hover:underline">
                     {h.name}
                   </Link>
                 ) : (
                   h.name
                 )}
-                {h.status === 'coming-soon' && <span className="ml-2 text-xs font-normal text-teal-dark">(coming soon)</span>}
+                {h.status === 'coming-soon' && <span className="ml-2 text-xs font-normal text-brass">(coming soon)</span>}
               </th>
               <td className="whitespace-nowrap px-2 py-3 tabular-nums sm:px-3">{h.connectivity!.airport}<span className="hidden text-muted sm:inline"> min</span></td>
               <td className="whitespace-nowrap px-2 py-3 tabular-nums sm:px-3">{h.connectivity!.railway}<span className="hidden text-muted sm:inline"> min</span></td>

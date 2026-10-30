@@ -86,7 +86,7 @@ export default function PhotoTrain({ images, title, speed = 40, reverse = false,
           type="button"
           tabIndex={clone ? -1 : undefined}
           onClick={() => setOpenAt(i % images.length)}
-          className={`group relative block overflow-hidden rounded-2xl bg-sand ${height}`}
+          className={`group relative block overflow-hidden rounded-lg bg-sand ${height}`}
           aria-label={clone ? undefined : `Open photo: ${img.alt}${img.isRender ? ' (Artist’s impression)' : ''}`}
         >
           <Img
@@ -123,7 +123,7 @@ export default function PhotoTrain({ images, title, speed = 40, reverse = false,
       <button
         type="button"
         onClick={() => setPaused((p) => !p)}
-        className="train__toggle absolute bottom-3 right-3 inline-flex min-h-[36px] items-center gap-1.5 rounded-full bg-cream/95 px-3 text-xs font-semibold text-ink shadow-card hover:bg-white"
+        className="train__toggle absolute bottom-3 right-3 inline-flex min-h-[36px] items-center gap-1.5 rounded-full bg-cream/95 px-3 text-xs font-semibold text-ink shadow-card hover:bg-sand"
         aria-pressed={paused}
         aria-label={paused ? `Play ${title}` : `Pause ${title}`}
       >

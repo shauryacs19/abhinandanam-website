@@ -51,11 +51,11 @@ export default function HotelsBrowser({ hotels }: { hotels: HotelSummary[] }) {
               aria-pressed={active === f.key}
               onClick={() => setActive(f.key)}
               className={`inline-flex min-h-[44px] shrink-0 items-center gap-2 rounded-full border px-4 text-sm font-semibold transition-colors ${
-                active === f.key ? 'border-copper-dark bg-copper-dark text-white' : 'border-gold bg-white/60 text-ink hover:border-copper-dark'
+                active === f.key ? 'border-gold bg-gold text-cream' : 'border-gold/25 bg-sand text-ink hover:border-brass'
               }`}
             >
               {f.label}
-              <span className={`rounded-full px-1.5 text-xs ${active === f.key ? 'bg-white text-copper-dark' : 'bg-sand'}`}>{count}</span>
+              <span className={`rounded-full px-1.5 text-xs ${active === f.key ? 'bg-cream text-ink' : 'bg-cream'}`}>{count}</span>
             </button>
           );
         })}
@@ -67,11 +67,11 @@ export default function HotelsBrowser({ hotels }: { hotels: HotelSummary[] }) {
       <ul className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {list.map((h) => (
           <li key={h.slug}>
-            <article className="flex h-full flex-col overflow-hidden rounded-3xl border border-gold/50 bg-white/70 shadow-card">
+            <article className="flex h-full flex-col overflow-hidden rounded-xl border border-gold/25 bg-sand shadow-card">
               <div className="relative">
                 <Img src={h.cover} alt={h.placeholder ? `${h.name}: photos coming soon (placeholder)` : `${h.name}${h.isRender ? " (artist's impression)" : ''}`} sizes="(min-width: 1280px) 380px, (min-width: 768px) 50vw, 100vw" className="aspect-[4/3] w-full bg-sand object-cover" />
                 {h.status === 'coming-soon' && <span className="absolute left-3 top-3 rounded-full bg-teal-dark px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white">Coming soon</span>}
-                {h.placeholder && <span className="absolute left-3 top-3 rounded-full bg-ink/80 px-3 py-1 text-xs font-semibold text-white">Details coming soon</span>}
+                {h.placeholder && <span className="absolute left-3 top-3 rounded-full bg-deep/80 px-3 py-1 text-xs font-semibold text-white">Details coming soon</span>}
               </div>
               {h.thumbs.length > 0 && (
                 <ul className="grid grid-cols-4 gap-1 p-1" aria-label={`More photos of ${h.name}`}>
@@ -83,7 +83,7 @@ export default function HotelsBrowser({ hotels }: { hotels: HotelSummary[] }) {
                 </ul>
               )}
               <div className="flex flex-1 flex-col p-5">
-                {h.stars ? <Stars count={h.stars} className="text-copper-dark" /> : null}
+                {h.stars ? <Stars count={h.stars} className="text-brass" /> : null}
                 <h2 className="mt-1 text-[28px] font-semibold leading-tight">{h.name}</h2>
                 <p className="mt-1 flex items-start gap-1.5 text-sm text-muted">
                   <MapPin className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
@@ -91,7 +91,7 @@ export default function HotelsBrowser({ hotels }: { hotels: HotelSummary[] }) {
                 </p>
                 {h.roomCount > 0 && (
                   <p className="mt-3 flex items-center gap-1.5 text-sm font-medium">
-                    <BedDouble className="h-4 w-4 text-copper-dark" aria-hidden="true" /> {h.roomCount} room categories
+                    <BedDouble className="h-4 w-4 text-brass" aria-hidden="true" /> {h.roomCount} room categories
                   </p>
                 )}
                 {h.amenities.length > 0 && (
@@ -100,7 +100,7 @@ export default function HotelsBrowser({ hotels }: { hotels: HotelSummary[] }) {
                       const Icon = amenityIcon(a);
                       return (
                         <li key={a} className="inline-flex items-center gap-1 rounded-full bg-sand px-2.5 py-1 text-xs" title={a}>
-                          <Icon className="h-3.5 w-3.5 text-copper-dark" aria-hidden="true" />
+                          <Icon className="h-3.5 w-3.5 text-brass" aria-hidden="true" />
                           {a}
                         </li>
                       );

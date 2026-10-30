@@ -13,7 +13,7 @@ export default function PhotoHeader({ images, hotelName }: { images: LightboxIma
 
   return (
     <div className="relative">
-      <div className="grid h-[300px] grid-cols-4 grid-rows-2 gap-2 overflow-hidden rounded-3xl sm:h-[420px] lg:h-[500px]">
+      <div className="grid h-[300px] grid-cols-4 grid-rows-2 gap-2 overflow-hidden rounded-xl sm:h-[420px] lg:h-[500px]">
         {tiles.map((img, i) => (
           <button
             key={img.src}
@@ -39,7 +39,7 @@ export default function PhotoHeader({ images, hotelName }: { images: LightboxIma
         <button
           type="button"
           onClick={() => setOpenAt(0)}
-          className="absolute bottom-4 right-4 inline-flex min-h-[44px] items-center gap-2 rounded-full border border-ink/20 bg-cream px-4 text-sm font-semibold shadow-card hover:bg-white"
+          className="absolute bottom-4 right-4 inline-flex min-h-[44px] items-center gap-2 rounded-full border border-white/20 bg-cream px-4 text-sm font-semibold shadow-card hover:bg-sand"
         >
           <Images className="h-4 w-4" aria-hidden="true" /> View all {images.length} photos
         </button>

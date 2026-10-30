@@ -11,6 +11,9 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import sharp from 'sharp';
 
+// Windows: sharp's file cache keeps the source .jpg open, so unlink() fails with EPERM
+sharp.cache(false);
+
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC = path.join(ROOT, 'public');
 const HOTELS = path.join(PUBLIC, 'images', 'hotels');

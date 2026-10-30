@@ -6,7 +6,7 @@ import {
 
 // First matching pattern wins. Unknown amenities fall back to a check mark.
 const rules: [RegExp, LucideIcon][] = [
-  [/wi-?fi/i, Wifi],
+  [/wi[-‑]?fi/i, Wifi],
   [/air ?con/i, AirVent],
   [/tv/i, Tv],
   [/minibar/i, Wine],

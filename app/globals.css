@@ -3,29 +3,59 @@
 @tailwind utilities;
 
 :root {
-  /* Brand tokens from the brochures, stored as RGB channels so Tailwind opacity
-     modifiers work (bg-cream/90). Hex in comments. */
-  --cream: 251 246 238; /* #FBF6EE page background */
-  --sand: 241 230 214; /* #F1E6D6 alternate section background */
-  --copper: 181 101 46; /* #B5652E display headings >= 24px only (4.0:1 on cream) */
-  --copper-dark: 138 74 31; /* #8A4A1F small accent text, links, buttons (6.3:1) */
-  --copper-deep: 116 57 26; /* #74391A button hover */
-  --teal: 47 138 122; /* #2F8A7A logo green, decorative only */
-  --teal-dark: 35 105 93; /* #23695D badges + WhatsApp buttons (white text 6.5:1) */
-  --ink: 43 36 32; /* #2B2420 body text */
-  --muted: 107 93 82; /* #6B5D52 secondary text (5.9:1) */
-  --gold-line: 217 185 140; /* #D9B98C thin rules */
+  /* "Charcoal, gold & forest" theme (2026-10-30, user: darker background that blends with the photos and
+     keeps the screen as dim as the photos are). Page = warm near-black taken from the darkest photo tones
+     (espresso wood, night facades); ivory text; champagne-gold accent and buttons. The header, footer and
+     a few bands (.theme-dark / anything bg-deep) stay forest green (set below).
+     Token names are historical: cream = page background, ink = main text, gold = primary button.
+     Stored as RGB channels so Tailwind opacity modifiers work. Contrast in comments is against the page. */
+  --cream: 24 21 18; /* #181512 warm charcoal: page background */
+  --sand: 36 32 27; /* #24201B raised charcoal: cards, alternate bands, hover fills */
+  --deep: 22 42 35; /* #162A23 forest green: footer, call band, stats (switches to the forest set) */
+  --ink: 240 232 218; /* #F0E8DA warm ivory: headings and body text (14.5:1) */
+  --brass: 214 186 136; /* #D6BA88 champagne gold: eyebrows, icons, links, stars (9.6:1) */
+  --brass-deep: 255 255 255; /* white: link/accent hover */
+  --gold-line: 214 186 136; /* champagne gold: primary buttons (charcoal text 9.6:1), dividers, hairlines */
+  --teal: 47 138 122; /* #2F8A7A logo jade, decorative only */
+  --teal-dark: 35 105 93; /* #23695D WhatsApp buttons + badges (white text 6.5:1) */
+  --muted: 168 158 142; /* #A89E8E secondary text (6.9:1) */
   --header-h: 72px;
+}
+
+/* Forest green bands with champagne-gold accents: the same tokens, flipped. Contrast against the band green. */
+.theme-dark,
+.intro,
+[class~="bg-deep"] {
+  --cream: 22 42 35; /* #162A23 forest green */
+  --sand: 32 56 47; /* #20382F raised green */
+  --deep: 22 42 35;
+  --ink: 244 238 226; /* #F4EEE2 warm ivory (14:1) */
+  --brass: 217 191 140; /* #D9BF8C champagne gold: eyebrows, icons, stars (9:1) */
+  --brass-deep: 255 255 255;
+  --gold-line: 236 222 196; /* #ECDEC4 champagne button, green text */
+  --muted: 176 184 170; /* #B0B8AA (7.6:1) */
+  color-scheme: dark;
 }
 
 @layer base {
   html {
+    /* Fluid scale (client, 2026-10-30: "resize the elements instead of rearranging them"): rem-based
+       text and spacing shrink with the window from 1440px down to 80% at 1152px and below, while the
+       layout keeps its desktop arrangement down to 768px (tailwind.config.ts screens). Phones: 16px. */
+    font-size: 16px;
+    background: rgb(var(--cream));
+    color-scheme: dark;
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
+  @media (min-width: 768px) {
+    html {
+      font-size: clamp(12.8px, calc(100vw / 90), 16px);
+    }
+  }
   body {
     @apply bg-cream font-sans text-ink antialiased;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.6;
   }
   h1,
@@ -42,13 +72,13 @@
     scroll-margin-top: calc(var(--header-h) + 64px);
   }
   :focus-visible {
-    outline: 3px solid rgb(var(--copper-dark));
+    outline: 3px solid rgb(var(--brass));
     outline-offset: 3px;
     border-radius: 4px;
   }
   ::selection {
-    background: rgb(var(--gold-line));
-    color: rgb(var(--ink));
+    background: rgb(var(--brass));
+    color: rgb(var(--cream));
   }
 }
 
@@ -60,37 +90,38 @@
     @apply py-16 sm:py-24;
   }
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.2em] text-copper-dark;
+    @apply text-xs font-semibold uppercase tracking-[0.28em] text-brass;
   }
   .h-display {
-    @apply font-serif text-4xl font-semibold text-copper sm:text-5xl lg:text-6xl;
+    @apply font-serif text-4xl font-semibold text-ink sm:text-5xl lg:text-6xl;
   }
   .h-section {
-    @apply font-serif text-3xl font-semibold text-copper sm:text-4xl;
+    @apply font-serif text-3xl font-semibold leading-[1.12] tracking-[0.01em] text-ink sm:text-[2.6rem];
   }
   .btn {
-    @apply inline-flex min-h-[48px] items-center justify-center gap-2 whitespace-nowrap rounded-full px-6 text-[15px] font-semibold transition-colors duration-200;
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2 whitespace-nowrap rounded-md px-6 text-[15px] font-semibold tracking-[0.02em] transition-colors duration-200;
   }
   .btn svg {
     @apply shrink-0;
   }
+  /* Champagne-gold call-to-action with dark text (a lighter champagne inside .theme-dark bands) */
   .btn-primary {
-    @apply btn bg-copper-dark text-white hover:bg-copper-deep;
+    @apply btn bg-gold text-cream hover:bg-brass;
   }
   .btn-whatsapp {
     @apply btn bg-teal-dark text-white hover:bg-[#1b5249];
   }
   .btn-outline {
-    @apply btn border border-copper-dark text-copper-dark hover:bg-copper-dark hover:text-white;
+    @apply btn border border-brass text-brass hover:bg-brass hover:text-cream;
   }
   .btn-ghost-light {
-    @apply btn border border-white/70 text-white hover:bg-white hover:text-ink;
+    @apply btn border border-white/70 text-white hover:bg-white hover:text-[#10231F];
   }
   .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-gold/70 bg-white/60 px-3 py-1 text-[13px] text-ink;
+    @apply inline-flex items-center gap-1.5 rounded-full border border-gold/20 bg-sand px-3 py-1 text-[13px] text-ink;
   }
   .link {
-    @apply font-semibold text-copper-dark underline decoration-gold decoration-2 underline-offset-4 hover:decoration-copper-dark;
+    @apply font-semibold text-brass underline decoration-brass/40 decoration-2 underline-offset-4 hover:text-brass-deep hover:decoration-brass-deep;
   }
   .arch {
     border-radius: 999px 999px 0 0;
@@ -140,35 +171,22 @@
   display: none;
 }
 
-/* Home hero: soft glow in the brand + logo colours (static echo of the intro) */
-.hero-glow {
-  background:
-    radial-gradient(40rem 26rem at 12% 8%, rgb(217 185 140 / 0.38), transparent 70%),
-    radial-gradient(34rem 24rem at 92% 18%, rgb(105 166 125 / 0.2), transparent 70%),
-    radial-gradient(38rem 28rem at 78% 100%, rgb(181 101 46 / 0.14), transparent 70%),
-    radial-gradient(30rem 22rem at 6% 96%, rgb(22 232 193 / 0.1), transparent 70%),
-    rgb(var(--cream));
-}
-
-/* Home hero headline: echoes the brochure cover (copper capitals) with an italic second line */
+/* Home hero headline (over the photo slideshow): echoes the brochure cover with spaced capitals + an italic second line */
 .hero-title-main {
   font-size: clamp(34px, 9.2vw, 74px);
   line-height: 0.95;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  /* copper → copper-dark; large text stays above 3:1 on cream at both ends */
-  background: linear-gradient(180deg, #b5652e 0%, #8a4a1f 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  padding-bottom: 0.04em; /* keeps descender-free caps from clipping the gradient */
+  color: #fff;
+  text-shadow: 0 2px 28px rgb(0 0 0 / 0.35);
 }
 .hero-title-sub {
   font-size: clamp(30px, 6.4vw, 56px);
   font-style: italic;
   line-height: 1;
   letter-spacing: 0.01em;
-  color: rgb(var(--ink));
+  color: rgb(var(--gold-line));
+  text-shadow: 0 2px 28px rgb(0 0 0 / 0.35);
 }
 
 /* ── Opening intro (components/IntroSplash.tsx) ──────────────────────────────────────────
@@ -215,8 +233,8 @@
   will-change: transform, opacity;
   animation: intro-swirl 1.45s cubic-bezier(0.5, 0, 0.2, 1) forwards;
 }
-.intro-blob--copper { --c: rgb(181 101 46 / 0.55); --x: -38vmax; --y: -24vmax; --r: 150deg; }
-.intro-blob--gold { --c: rgb(217 185 140 / 0.85); --x: 36vmax; --y: -30vmax; --r: -140deg; animation-delay: 60ms; }
+.intro-blob--brass { --c: rgb(154 115 64 / 0.55); --x: -38vmax; --y: -24vmax; --r: 150deg; }
+.intro-blob--gold { --c: rgb(200 164 108 / 0.85); --x: 36vmax; --y: -30vmax; --r: -140deg; animation-delay: 60ms; }
 .intro-blob--sage { --c: rgb(105 166 125 / 0.5); --x: 40vmax; --y: 28vmax; --r: 160deg; animation-delay: 120ms; }
 .intro-blob--aqua { --c: rgb(22 232 193 / 0.45); --x: -32vmax; --y: 34vmax; --r: -170deg; animation-delay: 40ms; }
 .intro-blob--teal { --c: rgb(35 105 93 / 0.32); --x: 0vmax; --y: 46vmax; --r: 120deg; animation-delay: 90ms; }
@@ -238,7 +256,7 @@
   inset: 0;
 }
 .intro-logo__colors {
-  background: conic-gradient(from var(--intro-angle), #b5652e, #d9b98c, #69a67d, #16e8c1, #23695d, #b5652e);
+  background: conic-gradient(from var(--intro-angle), #9a7340, #c8a46c, #69a67d, #16e8c1, #23695d, #9a7340);
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
@@ -269,7 +287,7 @@
   font-weight: 600;
   font-size: clamp(30px, 7vw, 42px);
   line-height: 1;
-  color: rgb(var(--teal-dark));
+  color: rgb(var(--ink));
 }
 .intro-word span:last-child {
   display: block;
@@ -344,6 +362,32 @@
 .train.is-paused > .train__track {
   animation-play-state: paused;
 }
+/* ── Home hero slideshow (components/HeroSlideshow.tsx): slow crossfade + gentle zoom on the active photo ── */
+.band__slide {
+  opacity: 0;
+  transition: opacity 1400ms ease;
+}
+.band__slide.is-active {
+  opacity: 1;
+}
+.band__slide.is-active img {
+  animation: band-zoom 9s ease-out both;
+}
+.band__fill {
+  animation: band-fill linear both;
+}
+@keyframes band-zoom {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+@keyframes band-fill {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .band__slide.is-active img { animation: none; }
+}
+
 @keyframes train-x {
   to {
     transform: translate3d(calc(-1 * var(--shift, 50%)), 0, 0);
@@ -363,4 +407,87 @@
   .train__toggle {
     display: none;
   }
+}
+
+/* ── Home "Our hotels" photo accordion (components/HotelPanels.tsx) ─────────────────────────
+   Desktop: the hovered / focused panel takes 3 parts of 5 (60% of the width) and shows its details;
+   with nothing hovered the first panel is the open one. Phones: stacked, details always shown. */
+@media (min-width: 768px) {
+  .hx-panel {
+    flex: 1 1 0;
+    min-width: 0;
+    transition: flex-grow 750ms cubic-bezier(0.22, 0.7, 0.2, 1);
+  }
+  .hx-img {
+    transition: transform 1200ms cubic-bezier(0.22, 0.7, 0.2, 1);
+  }
+  .hx-detail {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 300ms ease-out,
+      transform 300ms ease-out;
+  }
+  .hx:not(:hover):not(:focus-within) .hx-panel:first-child,
+  .hx-panel:hover,
+  .hx-panel:focus-within {
+    flex-grow: 3;
+  }
+  .hx:not(:hover):not(:focus-within) .hx-panel:first-child .hx-detail,
+  .hx-panel:hover .hx-detail,
+  .hx-panel:focus-within .hx-detail {
+    opacity: 1;
+    transform: none;
+    transition-delay: 280ms;
+  }
+  /* closed panels are ~20% wide: smaller name so "Pradesha by Abhinandanam" fits */
+  .hx .hx-name {
+    font-size: clamp(24px, 2.2vw, 32px);
+    line-height: 1.05;
+    transition: font-size 500ms ease;
+  }
+  .hx:not(:hover):not(:focus-within) .hx-panel:first-child .hx-name,
+  .hx .hx-panel:hover .hx-name,
+  .hx .hx-panel:focus-within .hx-name {
+    font-size: 56px;
+    line-height: 1;
+  }
+  .hx-panel:hover .hx-img {
+    transform: scale(1.04);
+  }
+  /* closed panels sit back in shadow; the open one comes up to the normal photo tint */
+  .hx .hx-img {
+    filter: brightness(0.5) saturate(0.85) sepia(0.06);
+    transition:
+      transform 1200ms cubic-bezier(0.22, 0.7, 0.2, 1),
+      filter 600ms ease;
+  }
+  .hx:not(:hover):not(:focus-within) .hx-panel:first-child .hx-img,
+  .hx .hx-panel:hover .hx-img,
+  .hx .hx-panel:focus-within .hx-img {
+    filter: brightness(0.8) saturate(0.92) sepia(0.06);
+  }
+}
+
+/* Photo tint (client, 2026-10-30: "add a tint on top of the images to make the website feel darker").
+   Every hotel photo is dimmed and warmed a touch so it sits in the charcoal page instead of glowing
+   out of it. Not the hero (it has its own dark overlay) or the full-screen lightbox (true colour). */
+img[src*="/images/hotels/"] {
+  filter: brightness(0.8) saturate(0.92) sepia(0.06);
+}
+.band__slide img,
+.lightbox img {
+  filter: none;
+}
+
+/* Google Maps embeds have no dark style without an API key, so the iframe is inverted into a dark map
+   (hue-rotate keeps water blue and the pin red), then softened to sit in the charcoal page. */
+.map-dark {
+  filter: invert(0.9) hue-rotate(180deg) brightness(0.92) contrast(0.88) saturate(0.55);
+}
+
+
+/* Background line-art motifs (components/Doodle.tsx): hairline strokes whatever size the motif is drawn at */
+.doodle * {
+  vector-effect: non-scaling-stroke;
 }

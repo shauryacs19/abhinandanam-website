@@ -7,7 +7,7 @@ import { pageMeta } from '@/lib/seo';
 
 export const metadata = pageMeta({
   title: 'Hotels in Vijay Nagar, Indore',
-  description: 'Compare Hotel Abhinandanam, The Grey Circle, the upcoming Pradesha and more. Rooms, pools, banquets and the best direct rate by phone or WhatsApp.',
+  description: 'Compare Hotel Abhinandanam, The Grey Circle, the upcoming Pradesha and more. Rooms, pools, banquets, bookable by phone or WhatsApp.',
   path: '/hotels/',
 });
 
@@ -44,7 +44,7 @@ export default function HotelsPage() {
             <span className="text-ink">{line.count}</span> {line.place}
           </h1>
           <Divider className="mt-4" />
-          <p className="mt-5 text-[17px] text-muted">Every hotel is bookable with one call or WhatsApp message. Talk to the front desk for rooms, availability and the best direct rate.</p>
+          <p className="mt-5 text-[17px] text-muted">Every hotel is bookable with one call or WhatsApp message. Talk to the front desk for rooms, availability and rates.</p>
         </div>
         <div className="mt-10">
           <HotelsBrowser hotels={summaries} />

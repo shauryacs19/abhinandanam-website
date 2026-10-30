@@ -18,7 +18,7 @@ export default function Breadcrumbs({ items }: { items: Crumb[] }) {
                 {c.name}
               </span>
             ) : (
-              <Link href={c.href} className="hover:text-copper-dark hover:underline">
+              <Link href={c.href} className="hover:text-brass hover:underline">
                 {c.name}
               </Link>
             )}

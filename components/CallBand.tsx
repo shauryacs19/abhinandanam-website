@@ -1,40 +1,39 @@
 import { MessageCircle, Phone } from 'lucide-react';
 import { site } from '@/data/site';
-import { formatPhone, waText, whatsappHref } from '@/lib/contact';
+import { waText, whatsappHref } from '@/lib/contact';
 import Divider from './Divider';
+import Doodle from './Doodle';
 
 type Props = { title?: string; text?: string; whatsappText?: string; phones?: readonly string[]; eyebrow?: string };
 
-/** "Ready to stay?" band: both numbers big + WhatsApp. */
+/** "Ready to stay?" band: Call + WhatsApp buttons (no numbers on show, client request). */
 export default function CallBand({
   title = 'Ready to stay?',
-  text = 'Our team will help with rooms and availability and give you the best direct rate on the phone.',
+  text = 'Our team will help with rooms, availability and rates on the phone.',
   whatsappText = waText.general,
   phones = site.phones,
-  eyebrow = 'Best rates on a direct call',
+  eyebrow = 'Book direct with the hotel',
 }: Props) {
   return (
-    <section aria-labelledby="call-band-title" className="bg-ink text-cream">
-      <div className="container-page reveal flex flex-col items-center py-16 text-center sm:py-20">
-        <p className="eyebrow !text-gold">{eyebrow}</p>
+    <section aria-labelledby="call-band-title" className="relative overflow-hidden bg-deep text-ink">
+      {/* a pair of jharokha arches framing the call to action */}
+      <Doodle name="arch" className="absolute -bottom-6 left-[2%] hidden w-56 sm:block lg:left-[8%] lg:w-64" />
+      <Doodle name="arch" className="absolute -bottom-6 right-[2%] hidden w-56 sm:block lg:right-[8%] lg:w-64" />
+      <div className="container-page reveal relative flex flex-col items-center py-16 text-center sm:py-20">
+        <p className="eyebrow !text-brass">{eyebrow}</p>
         <h2 id="call-band-title" className="mt-3 font-serif text-4xl font-semibold sm:text-5xl">
           {title}
         </h2>
         <Divider className="mt-4" />
-        <p className="mt-4 max-w-xl text-cream/80">{text}</p>
-        <ul className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:gap-10">
-          {phones.map((p) => (
-            <li key={p}>
-              <a href={`tel:${p}`} data-track="call-band" className="flex items-center gap-3 font-serif text-3xl font-semibold text-white hover:text-gold sm:text-4xl">
-                <Phone className="h-6 w-6 text-gold" aria-hidden="true" />
-                {formatPhone(p)}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <a href={whatsappHref(whatsappText)} data-track="call-band" target="_blank" rel="noopener noreferrer" className="btn-whatsapp mt-8">
-          <MessageCircle className="h-5 w-5" aria-hidden="true" /> Chat on WhatsApp
-        </a>
+        <p className="mt-4 max-w-xl text-ink/80">{text}</p>
+        <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">
+          <a href={`tel:${phones[0]}`} data-track="call-band" className="btn-primary">
+            <Phone className="h-5 w-5" aria-hidden="true" /> Call to book
+          </a>
+          <a href={whatsappHref(whatsappText)} data-track="call-band" target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
+            <MessageCircle className="h-5 w-5" aria-hidden="true" /> Chat on WhatsApp
+          </a>
+        </div>
       </div>
     </section>
   );

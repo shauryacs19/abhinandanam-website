@@ -34,7 +34,7 @@ export default function HotelPhotoSection({ hotel, limit, headingLevel = 'h2', r
     <section id={hotel.slug} aria-labelledby={`${hotel.slug}-photos`} className="reveal scroll-mt-28">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <div className="flex items-center gap-2 text-copper-dark">
+          <div className="flex items-center gap-2 text-brass">
             {hotel.stars && <Stars count={hotel.stars} />}
             {hotel.status === 'coming-soon' && (
               <span className="rounded-full bg-teal-dark px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white">Coming soon</span>

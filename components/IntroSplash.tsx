@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const MARK = '/images/brand/abhinandanam-mark-lg.webp';
+const MARK = '/images/brand/abhinandanam-mark-lg-white.webp';
 const FLIGHT_MS = 750;
 
 /**
@@ -48,7 +48,7 @@ export default function IntroSplash() {
         easing: ease,
         fill: 'forwards',
       }).onfinish = end;
-      overlay.animate([{ backgroundColor: 'rgb(251 246 238 / 0)' }], { duration: FLIGHT_MS * 0.8, easing: ease, fill: 'forwards' });
+      overlay.animate([{ backgroundColor: 'rgb(16 35 31 / 0)' }], { duration: FLIGHT_MS * 0.8, easing: ease, fill: 'forwards' });
       overlay.querySelectorAll<HTMLElement>('.intro-word, .intro-skip').forEach((el) =>
         el.animate([{ opacity: 0 }], { duration: 250, fill: 'forwards' }),
       );
@@ -87,7 +87,7 @@ export default function IntroSplash() {
         setGone(true);
       }}
     >
-      <span className="intro-blob intro-blob--copper" />
+      <span className="intro-blob intro-blob--brass" />
       <span className="intro-blob intro-blob--gold" />
       <span className="intro-blob intro-blob--sage" />
       <span className="intro-blob intro-blob--aqua" />

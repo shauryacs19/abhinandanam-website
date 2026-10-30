@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-30T19:30:00+05:30",
+  "title": "Design System: Abhinandanam Hospitality",
+  "extensions": {
+    "colorMeta": {
+      "forest": {
+        "role": "neutral",
+        "displayName": "Forest",
+        "canonical": "rgb(var(--cream))",
+        "tonalRamp": [
+          "#060F0D",
+          "#0A1815",
+          "#10231F",
+          "#18302A",
+          "#24443C",
+          "#3D6359",
+          "#6E9187",
+          "#B7CCC5"
+        ]
+      },
+      "forest-raised": {
+        "role": "neutral",
+        "displayName": "Forest Raised",
+        "canonical": "rgb(var(--sand))"
+      },
+      "forest-deep": {
+        "role": "neutral",
+        "displayName": "Forest Deep",
+        "canonical": "rgb(var(--deep))"
+      },
+      "soft-white": {
+        "role": "neutral",
+        "displayName": "Soft White",
+        "canonical": "rgb(var(--ink))"
+      },
+      "white": {
+        "role": "primary",
+        "displayName": "White",
+        "canonical": "rgb(var(--gold-line))"
+      },
+      "pale-jade": {
+        "role": "primary",
+        "displayName": "Pale Jade",
+        "canonical": "rgb(var(--brass))",
+        "tonalRamp": [
+          "#1E3F35",
+          "#2F5E50",
+          "#46806E",
+          "#64A38E",
+          "#86BDAA",
+          "#A8D5C4",
+          "#C9E6DA",
+          "#EAF6F1"
+        ]
+      },
+      "sage-grey": {
+        "role": "neutral",
+        "displayName": "Sage Grey",
+        "canonical": "rgb(var(--muted))"
+      },
+      "whatsapp-teal": {
+        "role": "secondary",
+        "displayName": "WhatsApp Teal",
+        "canonical": "rgb(var(--teal-dark))",
+        "tonalRamp": [
+          "#0E2C27",
+          "#1B5249",
+          "#23695D",
+          "#2F8A7A",
+          "#4FA595",
+          "#7DC0B3",
+          "#B0DAD1",
+          "#E0F1ED"
+        ]
+      },
+      "logo-jade": {
+        "role": "secondary",
+        "displayName": "Logo Jade",
+        "canonical": "rgb(var(--teal))"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Hero lockup",
+        "purpose": "Home hero word HOSPITALITY only."
+      },
+      "display-italic": {
+        "displayName": "Hero italic",
+        "purpose": "The gold 'Beyond Stays' line."
+      },
+      "headline": {
+        "displayName": "Section headline",
+        "purpose": "Section headings, followed by the gold divider."
+      },
+      "label": {
+        "displayName": "Eyebrow",
+        "purpose": "Uppercase pale-jade label above headlines."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card",
+        "value": "0 1px 2px rgb(16 35 31 / 0.06), 0 8px 24px -12px rgb(16 35 31 / 0.18)",
+        "purpose": "Photo frames in cards and showcases."
+      },
+      {
+        "name": "lift",
+        "value": "0 2px 4px rgb(16 35 31 / 0.08), 0 16px 40px -16px rgb(16 35 31 / 0.28)",
+        "purpose": "Floating elements: availability pill, booking card, dropdown."
+      }
+    ],
+    "motion": [
+      {
+        "name": "reveal",
+        "value": "opacity + translateY(12px), 500ms ease-out",
+        "purpose": "Fade-up on scroll."
+      },
+      {
+        "name": "hero-crossfade",
+        "value": "opacity 1400ms ease; zoom 1.08 to 1 over 9s",
+        "purpose": "Hero slideshow, 6.5s per slide."
+      },
+      {
+        "name": "photo-train",
+        "value": "linear, ~40px/s",
+        "purpose": "Photo marquee rows."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "White call to action with green text: Call to Book, Explore the hotel.",
+      "html": "<button class=\"ds-btn-primary\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z\"/></svg>Call to Book</button>",
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; gap:8px; min-height:48px; padding:0 24px; border:0; border-radius:6px; background:#FFFFFF; color:#10231F; font:600 15px/1 Inter, system-ui, sans-serif; letter-spacing:0.02em; cursor:pointer; transition:background-color 200ms; } .ds-btn-primary:hover { background:#A8D5C4; } .ds-btn-primary:focus-visible { outline:3px solid #A8D5C4; outline-offset:3px; }"
+    },
+    {
+      "name": "WhatsApp Button",
+      "kind": "button",
+      "refersTo": "button-whatsapp",
+      "description": "Every WhatsApp action.",
+      "html": "<button class=\"ds-btn-wa\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7.9 20A9 9 0 1 0 4 16.1L2 22z\"/></svg>Check availability</button>",
+      "css": ".ds-btn-wa { display:inline-flex; align-items:center; gap:8px; min-height:48px; padding:0 24px; border:0; border-radius:6px; background:#23695D; color:#fff; font:600 15px/1 Inter, system-ui, sans-serif; letter-spacing:0.02em; cursor:pointer; transition:background-color 200ms; } .ds-btn-wa:hover { background:#1B5249; } .ds-btn-wa:focus-visible { outline:3px solid #A8D5C4; outline-offset:3px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary actions such as Email.",
+      "html": "<button class=\"ds-btn-outline\">Email</button>",
+      "css": ".ds-btn-outline { display:inline-flex; align-items:center; min-height:48px; padding:0 24px; border:1px solid #A8D5C4; border-radius:6px; background:transparent; color:#A8D5C4; font:600 15px/1 Inter, system-ui, sans-serif; letter-spacing:0.02em; cursor:pointer; transition:background-color 200ms, color 200ms; } .ds-btn-outline:hover { background:#A8D5C4; color:#10231F; } .ds-btn-outline:focus-visible { outline:3px solid #A8D5C4; outline-offset:3px; }"
+    },
+    {
+      "name": "Amenity Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Room amenities.",
+      "html": "<span class=\"ds-chip\">Free Wi-Fi</span>",
+      "css": "body{background:#10231F} .ds-chip { display:inline-flex; align-items:center; gap:6px; padding:4px 12px; border:1px solid rgb(255 255 255 / 0.2); border-radius:9999px; background:#18302A; color:#F7F5F0; font:400 13px/1.4 Inter, system-ui, sans-serif; }"
+    },
+    {
+      "name": "Section Heading",
+      "kind": "custom",
+      "description": "Eyebrow, serif headline and the gold diamond divider.",
+      "html": "<div class=\"ds-heading\"><p class=\"ds-eyebrow\">Our hotels</p><h2 class=\"ds-h\">9 hotels in Indore</h2><svg width=\"160\" height=\"12\" viewBox=\"0 0 160 12\" fill=\"none\" style=\"color:#FFFFFF\"><path d=\"M0 6h68M92 6h68\" stroke=\"currentColor\"/><path d=\"M80 1l5 5-5 5-5-5 5-5z\" stroke=\"currentColor\"/><circle cx=\"68\" cy=\"6\" r=\"1.5\" fill=\"currentColor\"/><circle cx=\"92\" cy=\"6\" r=\"1.5\" fill=\"currentColor\"/></svg></div>",
+      "css": ".ds-heading { text-align:center; background:#10231F; padding:24px; } .ds-eyebrow { margin:0; font:600 12px/1.33 Inter, system-ui, sans-serif; letter-spacing:0.28em; text-transform:uppercase; color:#A8D5C4; } .ds-h { margin:12px 0 16px; font:600 2.6rem/1.12 'Cormorant Garamond', Georgia, serif; letter-spacing:0.01em; color:#F7F5F0; }"
+    },
+    {
+      "name": "Availability Pill",
+      "kind": "input",
+      "refersTo": "availability-pill",
+      "description": "Hotel / dates / guests bar that hands off to WhatsApp.",
+      "html": "<form class=\"ds-pill\"><label class=\"ds-field\"><span>Check-in</span><input type=\"date\"></label><label class=\"ds-field\"><span>Guests</span><select><option>2</option></select></label><button type=\"button\" class=\"ds-pill-btn\">Check availability</button></form>",
+      "css": ".ds-pill { display:grid; grid-template-columns:1fr 0.6fr auto; gap:4px; padding:8px; border:1px solid rgb(255 255 255 / 0.3); border-radius:12px; background:rgb(24 48 42 / 0.95); box-shadow:0 2px 4px rgb(16 35 31 / 0.08), 0 16px 40px -16px rgb(16 35 31 / 0.28); } .ds-field { display:flex; flex-direction:column; padding:8px 16px; border-radius:8px; transition:background-color 200ms; } .ds-field:hover, .ds-field:focus-within { background:rgb(16 35 31 / 0.7); } .ds-field:focus-within { box-shadow:0 0 0 2px #A8D5C4; } .ds-field span { font:600 11px/1.3 Inter, system-ui, sans-serif; letter-spacing:0.14em; text-transform:uppercase; color:#9FB3AB; } .ds-field input, .ds-field select { border:0; background:transparent; font:500 15px Inter, system-ui, sans-serif; color:#F7F5F0; outline:none; } .ds-pill-btn { min-height:52px; padding:0 24px; border:0; border-radius:6px; background:#23695D; color:#fff; font:600 15px Inter, system-ui, sans-serif; cursor:pointer; } .ds-pill-btn:hover { background:#1B5249; }"
+    },
+    {
+      "name": "Header",
+      "kind": "nav",
+      "refersTo": "header",
+      "description": "Forest bar, no border, white logo and white Call button.",
+      "html": "<header class=\"ds-header\"><span class=\"ds-logo\">Abhinandanam</span><nav><a href=\"#\" class=\"is-active\">Hotels</a><a href=\"#\">Banquets</a><a href=\"#\">Gallery</a></nav><a href=\"#\" class=\"ds-call\">Call to Book</a></header>",
+      "css": ".ds-header { display:flex; align-items:center; justify-content:space-between; gap:16px; height:72px; padding:0 32px; background:rgb(16 35 31 / 0.95); color:#F7F5F0; } .ds-logo { font:600 22px 'Cormorant Garamond', Georgia, serif; color:#FFFFFF; } .ds-header nav { display:flex; gap:4px; } .ds-header nav a { padding:10px 16px; color:inherit; text-decoration:none; font:500 15px Inter, system-ui, sans-serif; } .ds-header nav a:hover, .ds-header nav a.is-active { color:#A8D5C4; } .ds-call { display:inline-flex; align-items:center; min-height:44px; padding:0 20px; border-radius:6px; background:#FFFFFF; color:#10231F; font:600 15px Inter, system-ui, sans-serif; text-decoration:none; } .ds-call:hover { background:#A8D5C4; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Lit Lobby at Dusk",
+    "overview": "Since 2026-10-30 the whole site lives in the evening: every section sits on forest green, deep green or a full-bleed photograph, never on a light page. White carries the words, the logos and the one action to take; a pale jade picks out eyebrows, icons and links. The owner's brief: a \"green and white combination everywhere\", with the whole viewport covered by green, images or video. The tone is quiet luxury, not glamour. Big real photographs carry the emotion and glow against the dark; the type is a classical serif at one weight beside a plain sans; ornament is limited to a white hairline divider with a small diamond. Density is generous on marketing pages and tighter on hotel pages, where facts (sizes, beds, check-in) sit in tidy two-column lists. Rejected on purpose (owner decisions): the pastel white-and-green look, the ivory \"emerald & gold\" look (2026-10-25 to 10-30), the arched \"temple window\" cards, and photo walls that mix several hotels together.",
+    "keyCharacteristics": [
+      "Forest green everywhere, with deep and raised green bands for rhythm; no light sections.",
+      "White text, white logos (all-white copies of the client artwork) and white primary buttons with green text.",
+      "Pale jade for small accents only.",
+      "Cormorant Garamond 600 for every heading, Inter for everything else.",
+      "Photography first: full-bleed hero slideshow, large editorial photos, photo marquees.",
+      "Contact is always visible: white \"Call to Book\" in the header, sticky mobile bar, booking card."
+    ],
+    "rules": [
+      {
+        "name": "The No Light Page Rule",
+        "body": "Every section background is forest, raised, deep or a photo. Never ivory, white or grey.",
+        "section": "colors"
+      },
+      {
+        "name": "The White Means Go Rule",
+        "body": "A solid white fill is the primary action. Don't use white fills for cards, badges or backgrounds.",
+        "section": "colors"
+      },
+      {
+        "name": "The WhatsApp Is Teal Rule",
+        "body": "Teal belongs to WhatsApp (and the \"Coming soon\" badge). A call is white, a chat is teal, everywhere.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Weight Rule",
+        "body": "Cormorant is loaded at 600 only. Make hierarchy with size, case and italic, never with a second serif weight.",
+        "section": "typography"
+      },
+      {
+        "name": "The Lining Numerals Rule",
+        "body": "Serif numbers are lining (`lining-nums`), because Cormorant's default old-style figures make phone numbers look uneven.",
+        "section": "typography"
+      },
+      {
+        "name": "The Float Only Rule",
+        "body": "Only an element that overlaps or follows the page (pill, sticky card, menu) gets Lift. Ordinary content cards stay flat with a gold hairline.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep every section on forest, raised or deep green, or on a full-bleed photo or video.",
+      "Do use white for text, logos and the primary button; pale jade for eyebrows, icons and links.",
+      "Do use the all-white logo files (`*-white.webp`, made by `scripts/build_white_logos.py`) anywhere a logo sits on green.",
+      "Do put the white divider under every section headline and a jade eyebrow above it.",
+      "Do keep headings in Cormorant Garamond 600 with lining numerals, and everything else in Inter.",
+      "Do give every moving thing a Pause control and a still version for reduced motion.",
+      "Do label any 3D render \"Artist's impression\" on the image.",
+      "Do keep tap targets at least 44px and check new colour pairs against WCAG AA."
+    ],
+    "donts": [
+      "Don't bring back light sections (ivory, white or grey backgrounds), the gold accents, the pastel look or the arched hotel cards.",
+      "Don't put a border on the header.",
+      "Don't mix photos from different hotels in one wall or strip.",
+      "Don't use white hairlines above 35% opacity; they turn into stripes on dark green.",
+      "Don't add a second serif weight, a third typeface or decorative script.",
+      "Don't add heavy shadows, gradients on buttons or glossy effects; depth comes from the green levels, photos and hairlines.",
+      "Don't use teal for anything that isn't WhatsApp or a status badge."
+    ]
+  }
+}

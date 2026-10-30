@@ -32,7 +32,7 @@ export default function CountUp({ value, suffix = '' }: { value: number; suffix?
   }, [value]);
 
   return (
-    <span ref={ref} className="tabular-nums">
+    <span ref={ref} className="tabular-nums lining-nums">
       {shown.toLocaleString('en-IN')}
       {suffix}
     </span>

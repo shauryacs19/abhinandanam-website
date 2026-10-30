@@ -3,9 +3,33 @@
   480,
   469
  ],
+ "/images/brand/abhinandanam-logo-horizontal-white.webp": [
+  1000,
+  237
+ ],
+ "/images/brand/abhinandanam-logo-horizontal.webp": [
+  1000,
+  237
+ ],
+ "/images/brand/abhinandanam-logo-stacked-white.webp": [
+  900,
+  882
+ ],
+ "/images/brand/abhinandanam-logo-stacked.webp": [
+  900,
+  882
+ ],
+ "/images/brand/abhinandanam-mark-lg-white.webp": [
+  498,
+  492
+ ],
  "/images/brand/abhinandanam-mark-lg.webp": [
   498,
   492
+ ],
+ "/images/brand/abhinandanam-mark-sm-white.webp": [
+  113,
+  112
  ],
  "/images/brand/abhinandanam-mark-sm.webp": [
   113,
@@ -33,6 +57,18 @@
   420,
   560,
   400
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-dining-new-1.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-dining-new-2.webp": [
+  2000,
+  1333,
+  400,
+  800
  ],
  "/images/hotels/abhinandanam/abhinandanam-events-1.webp": [
   800,
@@ -81,6 +117,24 @@
   510,
   400
  ],
+ "/images/hotels/abhinandanam/abhinandanam-exterior-night-1.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-exterior-night-2.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-exterior-night-3.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
  "/images/hotels/abhinandanam/abhinandanam-lobby-1.webp": [
   776,
   616,
@@ -99,6 +153,60 @@
   382,
   510
  ],
+ "/images/hotels/abhinandanam/abhinandanam-lobby-new-1.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-lobby-new-2.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-lobby-new-3.webp": [
+  2000,
+  3000,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-lobby-new-4.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-lobby-new-5.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-lobby-new-6.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-lobby-new-7.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-lobby-new-8.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-lobby-new-9.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
  "/images/hotels/abhinandanam/abhinandanam-pool-1.webp": [
   874,
   581,
@@ -110,49 +218,131 @@
   318,
   400
  ],
- "/images/hotels/abhinandanam/abhinandanam-rooms-1.webp": [
-  750,
-  500,
-  400
+ "/images/hotels/abhinandanam/abhinandanam-pool-new-1.webp": [
+  2000,
+  1333,
+  400,
+  800
  ],
- "/images/hotels/abhinandanam/abhinandanam-rooms-2.webp": [
-  750,
-  500,
-  400
+ "/images/hotels/abhinandanam/abhinandanam-pool-new-2.webp": [
+  2000,
+  1333,
+  400,
+  800
  ],
- "/images/hotels/abhinandanam/abhinandanam-rooms-3.webp": [
-  750,
-  500,
-  400
+ "/images/hotels/abhinandanam/abhinandanam-rooms-corporate-1.webp": [
+  2000,
+  1333,
+  400,
+  800
  ],
- "/images/hotels/abhinandanam/abhinandanam-rooms-4.webp": [
-  750,
-  500,
-  400
+ "/images/hotels/abhinandanam/abhinandanam-rooms-corporate-2.webp": [
+  2000,
+  1333,
+  400,
+  800
  ],
- "/images/hotels/abhinandanam/abhinandanam-rooms-5.webp": [
-  674,
-  500,
-  400
+ "/images/hotels/abhinandanam/abhinandanam-rooms-corporate-3.webp": [
+  2000,
+  3000,
+  400,
+  800
  ],
- "/images/hotels/abhinandanam/abhinandanam-rooms-6.webp": [
-  750,
-  500,
-  400
+ "/images/hotels/abhinandanam/abhinandanam-rooms-exec-suite-1.webp": [
+  2000,
+  1500,
+  400,
+  800
  ],
- "/images/hotels/abhinandanam/abhinandanam-rooms-7.webp": [
-  680,
-  453,
-  400
+ "/images/hotels/abhinandanam/abhinandanam-rooms-exec-suite-2.webp": [
+  2000,
+  1500,
+  400,
+  800
  ],
- "/images/hotels/abhinandanam/abhinandanam-rooms-8.webp": [
-  388,
-  432
+ "/images/hotels/abhinandanam/abhinandanam-rooms-exec-suite-3.webp": [
+  2000,
+  1500,
+  400,
+  800
  ],
- "/images/hotels/abhinandanam/abhinandanam-rooms-9.webp": [
-  600,
-  800,
-  400
+ "/images/hotels/abhinandanam/abhinandanam-rooms-exec-suite-4.webp": [
+  2000,
+  1500,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-rooms-exec-suite-5.webp": [
+  2000,
+  2667,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-rooms-executive-1.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-rooms-executive-2.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-rooms-executive-3.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-rooms-family-1.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-rooms-family-2.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-rooms-family-3.webp": [
+  2000,
+  3000,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-rooms-standard-1.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-rooms-standard-2.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-rooms-suite-1.webp": [
+  2000,
+  1483,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-rooms-suite-2.webp": [
+  2000,
+  1333,
+  400,
+  800
+ ],
+ "/images/hotels/abhinandanam/abhinandanam-rooms-suite-3.webp": [
+  2000,
+  1333,
+  400,
+  800
  ],
  "/images/hotels/pradesha/pradesha-events-1.webp": [
   800,
@@ -229,52 +419,194 @@
   400,
   800
  ],
- "/images/hotels/the-grey-circle/the-grey-circle-exterior-1.webp": [
-  800,
-  450,
-  400
- ],
- "/images/hotels/the-grey-circle/the-grey-circle-exterior-2.webp": [
-  748,
-  676,
-  400
- ],
- "/images/hotels/the-grey-circle/the-grey-circle-exterior-3.webp": [
-  1192,
-  1120,
+ "/images/hotels/the-grey-circle/the-grey-circle-events-conference-1.webp": [
+  2000,
+  1500,
   400,
   800
  ],
- "/images/hotels/the-grey-circle/the-grey-circle-lobby-1.webp": [
-  640,
-  427,
-  400
- ],
- "/images/hotels/the-grey-circle/the-grey-circle-lobby-2.webp": [
-  640,
-  427,
-  400
- ],
- "/images/hotels/the-grey-circle/the-grey-circle-lobby-3.webp": [
-  800,
-  533,
-  400
- ],
- "/images/hotels/the-grey-circle/the-grey-circle-rooms-1.webp": [
-  1024,
-  683,
+ "/images/hotels/the-grey-circle/the-grey-circle-events-hall-1.webp": [
+  1280,
+  720,
   400,
   800
  ],
- "/images/hotels/the-grey-circle/the-grey-circle-rooms-2.webp": [
-  881,
-  497,
+ "/images/hotels/the-grey-circle/the-grey-circle-events-hall-2.webp": [
+  2000,
+  899,
   400,
   800
  ],
- "/images/hotels/the-grey-circle/the-grey-circle-rooms-3.webp": [
-  889,
-  500,
+ "/images/hotels/the-grey-circle/the-grey-circle-events-hall-3.webp": [
+  1280,
+  720,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-events-meeting-1.webp": [
+  2000,
+  1500,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-exterior-front-1.webp": [
+  1280,
+  852,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-exterior-front-2.webp": [
+  1280,
+  720,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-exterior-front-3.webp": [
+  1280,
+  852,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-lobby-hall-1.webp": [
+  1280,
+  852,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-lobby-hall-2.webp": [
+  1280,
+  720,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-lobby-hall-3.webp": [
+  1600,
+  1066,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooftop-1.webp": [
+  1280,
+  720,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooftop-2.webp": [
+  1280,
+  720,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooftop-3.webp": [
+  1280,
+  720,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooftop-4.webp": [
+  1600,
+  1066,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooms-deluxe-1.webp": [
+  1280,
+  720,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooms-deluxe-2.webp": [
+  720,
+  1280,
+  400
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooms-deluxe-3.webp": [
+  1280,
+  720,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooms-executive-1.webp": [
+  1280,
+  720,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooms-executive-2.webp": [
+  1280,
+  720,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooms-executive-3.webp": [
+  1280,
+  720,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooms-premium-1.webp": [
+  2000,
+  1335,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooms-premium-2.webp": [
+  1280,
+  720,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooms-premium-3.webp": [
+  1280,
+  720,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooms-standard-1.webp": [
+  2000,
+  1335,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooms-standard-2.webp": [
+  2000,
+  1335,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooms-suite-1.webp": [
+  1280,
+  720,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooms-suite-2.webp": [
+  1280,
+  720,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooms-suite-3.webp": [
+  1280,
+  720,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooms-suite-4.webp": [
+  1280,
+  720,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooms-suite-5.webp": [
+  1280,
+  853,
+  400,
+  800
+ ],
+ "/images/hotels/the-grey-circle/the-grey-circle-rooms-suite-6.webp": [
+  1280,
+  853,
   400,
   800
  ],
